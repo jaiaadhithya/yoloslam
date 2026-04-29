@@ -1,0 +1,11 @@
+.venv/
+build/
+install/
+log/
+results/
+__pycache__/
+*.pyc
+*.pyo
+*.swp
+*.tmp
+.DS_Store

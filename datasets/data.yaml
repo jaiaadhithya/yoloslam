@@ -1,0 +1,15 @@
+path: datasets/terrain_dataset
+train: images/train
+val: images/val
+names:
+  0: flat_ground
+  1: water
+  2: tree_canopy
+  3: building_structure
+  4: vehicle
+  5: person
+  6: debris_clutter
+  7: road_surface
+  8: grass_field
+  9: rooftop_flat
+  10: fence_pole

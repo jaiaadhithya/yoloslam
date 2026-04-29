@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>yolo_slam_landing</name>
+  <version>0.1.0</version>
+  <description>YOLO + SLAM safe-zone landing scaffold.</description>
+  <maintainer email="noreply@example.com">yolo_slam_landing</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>rclpy</exec_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

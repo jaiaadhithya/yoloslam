@@ -1,0 +1,37 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\begin{document}
+\title{Infrastructure-Free Autonomous UAV Landing in Unknown Terrain via Semantic Scene Understanding and Visual SLAM}
+\author{\IEEEauthorblockN{Your Name}}
+\maketitle
+
+\begin{abstract}
+Precision landing without pre-installed markers is a core requirement for field robotics, disaster response, and logistics in unprepared environments. We present a simulation-first framework that combines multi-class YOLO terrain understanding with ORB-SLAM3 localization to produce a world-frame spatial safety map and select landing zones online. Instead of tracking a known marker, the system classifies scene elements such as grass, water, trees, buildings, vehicles, people, and debris, accumulates safe/unsafe evidence over time, and executes a survey-evaluate-approach-descent controller with dynamic abort conditions when unsafe objects enter the selected zone. This framing targets infrastructure-free operation and directly addresses unknown-terrain landing.
+\end{abstract}
+
+\section{Introduction}
+Autonomous landing in unknown terrain remains challenging because geometric localization alone does not encode semantic safety, and semantic detection alone is not enough to maintain stable world-frame decisions under motion.
+
+\section{Related Work}
+Marker-based landing methods provide high precision but require infrastructure. Semantic detection methods improve perception but often lack strong geometric consistency. Visual SLAM methods provide geometric state estimates but do not inherently reason about landing safety classes.
+
+\section{Method}
+The system includes a multi-class YOLO detector (with optional segmentation), visual SLAM, grid-based semantic-geometric fusion, and a safety-aware state machine with survey and evaluate stages before descent.
+
+\section{Experiments}
+The simulation stack uses PX4 SITL and Gazebo in a mixed-terrain world with clearings, trees, water, buildings, vehicles, and pedestrians. Trials include dynamic safety intrusions to validate abort behavior.
+
+\section{Results}
+The proposed approach selects safer zones than geometry-only baselines and aborts unsafe descents when dynamic hazards appear in the landing zone.
+
+\section{Discussion}
+The key contribution is moving from marker-centric target tracking to infrastructure-free landing decision-making in unknown terrain.
+
+\section{Conclusion}
+Semantic-geometric fusion with persistent safety scoring is a strong path toward robust UAV landing without scene instrumentation.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+\end{document}

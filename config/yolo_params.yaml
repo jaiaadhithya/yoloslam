@@ -1,0 +1,32 @@
+model_path: models/yolov8_terrain.pt
+confidence_threshold: 0.5
+nms_iou_threshold: 0.45
+segmentation_enabled: true
+classes:
+  0: flat_ground
+  1: water
+  2: tree_canopy
+  3: building_structure
+  4: vehicle
+  5: person
+  6: debris_clutter
+  7: road_surface
+  8: grass_field
+  9: rooftop_flat
+  10: fence_pole
+safe_labels:
+  flat_ground: true
+  grass_field: true
+  rooftop_flat: true
+  road_surface: false
+  water: false
+  tree_canopy: false
+  building_structure: false
+  vehicle: false
+  person: false
+  debris_clutter: false
+  fence_pole: false
+image_topic: /drone/camera/image_raw
+detections_topic: /yolo/detections
+annotated_topic: /yolo/safety_map
+safe_zones_topic: /yolo/safe_zones

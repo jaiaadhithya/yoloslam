@@ -1,0 +1,9 @@
+survey:
+  mode: lawnmower
+  altitude_m: 18.0
+  speed_mps: 2.0
+  width_m: 80.0
+  height_m: 80.0
+  lane_spacing_m: 8.0
+  origin_xy: [0.0, 0.0]
+  yaw_mode: face_track

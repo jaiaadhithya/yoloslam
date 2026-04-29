@@ -1,0 +1,10 @@
+geometry_msgs/Point zone_center
+float64[9] covariance
+bool is_valid
+float32 zone_score
+float32 zone_radius
+int32 num_observations
+int32 zone_area_cells
+bool has_valid_zone
+bool intrusion_detected
+builtin_interfaces/Time stamp

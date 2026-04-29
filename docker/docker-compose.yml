@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  yolo-slam:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: yolo_slam_landing
+    network_mode: host
+    stdin_open: true
+    tty: true
+    environment:
+      - DISPLAY=${DISPLAY}
+      - LIBGL_ALWAYS_SOFTWARE=1
+    volumes:
+      - ..:/workspace
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

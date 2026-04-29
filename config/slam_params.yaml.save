@@ -1,0 +1,15 @@
+/home/jaia/third_party/ORB_SLAM3/Vocabulary/ORBvoc.txtcamera:
+  fx: 320.0
+  fy: 320.0
+  cx: 320.0
+  cy: 240.0
+  width: 640
+  height: 480
+  fps: 30
+
+orbslam3:
+  vocabulary_path: /opt/orbslam3/Vocabulary/ORBvoc.txt
+  n_features: 2000
+  scale_factor: 1.2
+  n_levels: 8
+  mode: monocular

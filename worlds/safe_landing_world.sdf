@@ -1,0 +1,115 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <world name="safe_landing_world">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- 100m x 100m reference boundary -->
+    <model name="world_boundary">
+      <static>true</static>
+      <link name="boundary">
+        <visual name="outline">
+          <geometry>
+            <box><size>100 100 0.01</size></box>
+          </geometry>
+          <material>
+            <ambient>0.4 0.4 0.4 0.08</ambient>
+            <diffuse>0.4 0.4 0.4 0.08</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- NW: Safe clearing -->
+    <model name="safe_zone_1_clearing">
+      <pose>-25 25 0 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>15 15 0.03</size></box>
+          </geometry>
+          <material>
+            <ambient>0.25 0.55 0.2 1</ambient>
+            <diffuse>0.25 0.55 0.2 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- NE: Parking + vehicles -->
+    <model name="parking_area">
+      <pose>25 25 0 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry>
+            <box><size>18 18 0.03</size></box>
+          </geometry>
+          <material>
+            <ambient>0.2 0.2 0.2 1</ambient>
+            <diffuse>0.2 0.2 0.2 1</diffuse>
+          </material>
+        </visual>
+      </link>
+    </model>
+    <include><uri>model://ambulance</uri><name>vehicle_1</name><pose>20 30 0.1 0 0 0</pose></include>
+    <include><uri>model://pioneer2dx</uri><name>vehicle_2</name><pose>26 30 0.1 0 0 0</pose></include>
+    <include><uri>model://pioneer2dx</uri><name>vehicle_3</name><pose>32 30 0.1 0 0 1.57</pose></include>
+
+    <!-- Center: Trees -->
+    <include><uri>model://pine_tree</uri><name>tree_1</name><pose>-4 2 0 0 0 0</pose></include>
+    <include><uri>model://oak_tree</uri><name>tree_2</name><pose>2 0 0 0 0 0</pose></include>
+    <include><uri>model://pine_tree</uri><name>tree_3</name><pose>4 -3 0 0 0 0</pose></include>
+    <include><uri>model://oak_tree</uri><name>tree_4</name><pose>-2 -4 0 0 0 0</pose></include>
+
+    <!-- SE: Water -->
+    <model name="unsafe_water">
+      <pose>25 -25 0 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry><box><size>8 8 0.02</size></box></geometry>
+          <material><ambient>0.05 0.2 0.9 1</ambient><diffuse>0.05 0.2 0.9 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- SW: Buildings -->
+    <include><uri>model://house_1</uri><name>building_flat_roof</name><pose>-30 -25 0 0 0 0</pose></include>
+    <include><uri>model://house_2</uri><name>building_sloped_roof</name><pose>-20 -25 0 0 0 0</pose></include>
+
+    <!-- East debris -->
+    <model name="debris_1"><pose>42 0 0.5 0 0 0</pose><static>true</static><link name="l"><visual name="v"><geometry><box><size>1.2 1.1 1</size></box></geometry></visual></link></model>
+    <model name="debris_2"><pose>44 2 0.4 0 0 0</pose><static>true</static><link name="l"><visual name="v"><geometry><cylinder><radius>0.6</radius><length>0.8</length></cylinder></geometry></visual></link></model>
+    <model name="debris_3"><pose>46 -2 0.3 0 0 0</pose><static>true</static><link name="l"><visual name="v"><geometry><box><size>0.8 0.8 0.6</size></box></geometry></visual></link></model>
+
+    <!-- South safe grass field -->
+    <model name="safe_zone_2_grass">
+      <pose>0 -35 0 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry><box><size>20 20 0.03</size></box></geometry>
+          <material><ambient>0.2 0.6 0.25 1</ambient><diffuse>0.2 0.6 0.25 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Road and pedestrians -->
+    <model name="road_surface">
+      <pose>0 12 0 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual"><geometry><box><size>70 4 0.02</size></box></geometry></visual>
+      </link>
+    </model>
+    <include><uri>model://person_standing</uri><name>pedestrian_1</name><pose>-6 12 0 0 0 0</pose></include>
+    <include><uri>model://person_standing</uri><name>pedestrian_2</name><pose>3 12 0 0 0 0</pose></include>
+    <include><uri>model://person_standing</uri><name>pedestrian_3</name><pose>10 12 0 0 0 0</pose></include>
+  </world>
+</sdf>

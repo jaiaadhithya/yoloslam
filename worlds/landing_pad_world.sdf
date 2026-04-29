@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <world name="deprecated_world_alias">
+    <include><uri>model://ground_plane</uri></include>
+    <include><uri>model://sun</uri></include>
+    <model name="deprecated_notice">
+      <static>true</static>
+      <pose>0 0 0.2 0 0 0</pose>
+      <link name="link">
+        <visual name="v">
+          <geometry><box><size>8 1 0.2</size></box></geometry>
+          <material><ambient>0.8 0.5 0.1 1</ambient><diffuse>0.8 0.5 0.1 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+  </world>
+</sdf>

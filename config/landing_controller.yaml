@@ -1,0 +1,19 @@
+controller:
+  kp_xy: 0.8
+  ki_xy: 0.02
+  kd_xy: 0.1
+  kp_z: 0.7
+  ki_z: 0.01
+  kd_z: 0.08
+  kp_yaw: 0.5
+  ki_yaw: 0.01
+  kd_yaw: 0.05
+
+state_machine:
+  search_confidence_threshold: 0.7
+  approach_radius_m: 1.0
+  align_tolerance_m: 0.15
+  descend_rate_mps: 0.3
+  max_xy_error_descend_m: 0.5
+  landed_altitude_m: 0.2
+  target_lost_timeout_s: 3.0
