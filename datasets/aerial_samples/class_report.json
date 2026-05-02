@@ -1,0 +1,18 @@
+{
+  "classes_across_dataset": [
+    "person",
+    "truck"
+  ],
+  "per_image_top_level_classes": {
+    "0000086_01443_d_0000004.jpg": [
+      "person"
+    ],
+    "0000022_00000_d_0000004.jpg": [
+      "person"
+    ],
+    "0000103_03738_d_0000032.jpg": [
+      "person",
+      "truck"
+    ]
+  }
+}

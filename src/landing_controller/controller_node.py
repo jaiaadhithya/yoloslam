@@ -4,7 +4,7 @@ from typing import Dict
 import time
 
 from landing_controller.pid import PID, PIDGains
-from landing_controller.state_machine import LandingState, LandingStateMachine
+from landing_controller.state_machine import LandingSMConfig, LandingState, LandingStateMachine
 
 
 @dataclass
@@ -14,11 +14,12 @@ class VelocityCommand:
     vz: float
     yaw_rate: float
     state: str
+    transition_reason: str
 
 
 class ControllerNode:
-    def __init__(self) -> None:
-        self.sm = LandingStateMachine()
+    def __init__(self, sm_config: LandingSMConfig | None = None) -> None:
+        self.sm = LandingStateMachine(sm_config)
         self.pid_x = PID(PIDGains(0.8, 0.02, 0.1))
         self.pid_y = PID(PIDGains(0.8, 0.02, 0.1))
         self.pid_z = PID(PIDGains(0.7, 0.01, 0.08))
@@ -65,7 +66,16 @@ class ControllerNode:
         vz = max(-self.max_vz, min(self.max_vz, vz))
         yaw_rate = max(-self.max_yaw_rate, min(self.max_yaw_rate, yaw_rate))
 
-        return asdict(VelocityCommand(vx=vx, vy=vy, vz=vz, yaw_rate=yaw_rate, state=state.value))
+        return asdict(
+            VelocityCommand(
+                vx=vx,
+                vy=vy,
+                vz=vz,
+                yaw_rate=yaw_rate,
+                state=state.value,
+                transition_reason=self.sm.transition_reason,
+            )
+        )
 
 
 if __name__ == "__main__":

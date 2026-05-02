@@ -33,6 +33,40 @@ class SafetyGrid:
         else:
             self.unsafe_score[iy, ix] += delta
 
+    def integrate_unsafe_footprint(
+        self,
+        x_min: float,
+        x_max: float,
+        y_min: float,
+        y_max: float,
+        per_cell_weight: float,
+    ) -> None:
+        """Spread unsafe mass across all grid cells overlapping the world XY footprint."""
+        if per_cell_weight <= 0:
+            return
+        corners = [(x_min, y_min), (x_max, y_min), (x_max, y_max), (x_min, y_max)]
+        ixs: list[int] = []
+        iys: list[int] = []
+        for wx, wy in corners:
+            ix, iy = self.world_to_cell(wx, wy)
+            if ix >= 0 and iy >= 0:
+                ixs.append(ix)
+                iys.append(iy)
+        if not ixs:
+            cx = 0.5 * (float(x_min) + float(x_max))
+            cy = 0.5 * (float(y_min) + float(y_max))
+            ix, iy = self.world_to_cell(cx, cy)
+            if ix < 0 or iy < 0:
+                return
+            self.unsafe_score[iy, ix] += max(0.05, per_cell_weight)
+            return
+        ix0, ix1 = max(0, min(ixs)), min(self.side_cells - 1, max(ixs))
+        iy0, iy1 = max(0, min(iys)), min(self.side_cells - 1, max(iys))
+        w = max(0.05, per_cell_weight)
+        for iy in range(iy0, iy1 + 1):
+            for ix in range(ix0, ix1 + 1):
+                self.unsafe_score[iy, ix] += w
+
     def world_to_cell(self, x: float, y: float) -> Tuple[int, int]:
         half = self.world_size_m / 2.0
         ix = int((x + half) / self.resolution_m)

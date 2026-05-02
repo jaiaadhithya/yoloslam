@@ -1,4 +1,4 @@
-ultralytics==8.2.0
+ultralytics>=8.3.0
 opencv-python==4.9.0.80
 numpy==1.26.4
 matplotlib==3.8.3
@@ -8,3 +8,4 @@ evo==1.28.0
 transforms3d==0.4.1
 filterpy==1.4.5
 PyYAML==6.0.1
+pymavlink>=2.4.40

@@ -1,4 +1,5 @@
 import argparse
+import csv
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -13,10 +14,18 @@ def main() -> None:
     out = Path(args.results_dir) / "comparison"
     out.mkdir(parents=True, exist_ok=True)
 
-    rng = np.random.default_rng(42)
-    yolo = np.abs(rng.normal(0.45, 0.12, size=30))
-    slam = np.abs(rng.normal(0.37, 0.10, size=30))
-    fused = np.abs(rng.normal(0.18, 0.05, size=30))
+    table_path = out / "ablation_table.csv"
+    if not table_path.exists():
+        raise FileNotFoundError(f"Missing ablation data: {table_path}. Run evaluation.run_trials first.")
+
+    by_condition: dict[str, list[float]] = {"yolo_only": [], "slam_only": [], "fused": []}
+    with table_path.open("r", newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            by_condition[row["condition"]].append(float(row["landing_error_m"]))
+
+    yolo = np.array(by_condition["yolo_only"], dtype=float)
+    slam = np.array(by_condition["slam_only"], dtype=float)
+    fused = np.array(by_condition["fused"], dtype=float)
 
     plt.figure(figsize=(8, 4))
     plt.boxplot([yolo, slam, fused], tick_labels=["YOLO-only", "SLAM-only", "Fused"])

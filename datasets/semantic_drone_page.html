@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<title>Semantic Drone Dataset &#8211; IVC</title><link rel="preload" data-rocket-preload as="image" href="https://ivc.tugraz.at/wp-content/uploads/fyler3.png" imagesrcset="https://ivc.tugraz.at/wp-content/uploads/fyler3.png 793w, https://ivc.tugraz.at/wp-content/uploads/fyler3-768x541.png 768w" imagesizes="(max-width: 793px) 100vw, 793px" fetchpriority="high">
+<meta name='robots' content='max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+<link rel="canonical" href="https://ivc.tugraz.at/research-project/semantic-drone-dataset/">
+<meta name="description" content="Dataset Overview The Semantic Drone Dataset focuses on semantic understanding of urban scenes for increasing the safety of autonomous drone flight and landing p">
+<meta property="og:title" content="Semantic Drone Dataset &#8211; IVC">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://ivc.tugraz.at/wp-content/uploads/fyler3.png">
+<meta property="og:image:width" content="793">
+<meta property="og:image:height" content="559">
+<meta property="og:image:alt" content="Fyler3">
+<meta property="og:description" content="Dataset Overview The Semantic Drone Dataset focuses on semantic understanding of urban scenes for increasing the safety of autonomous drone flight and landing p">
+<meta property="og:url" content="https://ivc.tugraz.at/research-project/semantic-drone-dataset/">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="IVC">
+<meta property="article:published_time" content="2025-09-09T13:41:14+02:00">
+<meta property="article:modified_time" content="2025-09-09T13:41:15+02:00">
+<meta property="og:updated_time" content="2025-09-09T13:41:15+02:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ivc.tugraz.at/wp-content/uploads/fyler3.png">
+
+<link rel="alternate" type="application/rss+xml" title="IVC &raquo; Feed" href="https://ivc.tugraz.at/feed/" />
+<link rel="alternate" type="application/rss+xml" title="IVC &raquo; Comments Feed" href="https://ivc.tugraz.at/comments/feed/" />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://ivc.tugraz.at/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fivc.tugraz.at%2Fresearch-project%2Fsemantic-drone-dataset%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://ivc.tugraz.at/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fivc.tugraz.at%2Fresearch-project%2Fsemantic-drone-dataset%2F&#038;format=xml" />
+<style id='wp-img-auto-sizes-contain-inline-css'>
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='https://ivc.tugraz.at/wp-includes/css/dist/block-library/style.min.css?ver=6.9.4' media='all' />
+<style id='global-styles-inline-css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:root { --wp--style--global--content-size: 800px;--wp--style--global--wide-size: 1200px; }:where(body) { margin: 0; }.wp-site-blocks > .alignleft { float: left; margin-right: 2em; }.wp-site-blocks > .alignright { float: right; margin-left: 2em; }.wp-site-blocks > .aligncenter { justify-content: center; margin-left: auto; margin-right: auto; }:where(.wp-site-blocks) > * { margin-block-start: 24px; margin-block-end: 0; }:where(.wp-site-blocks) > :first-child { margin-block-start: 0; }:where(.wp-site-blocks) > :last-child { margin-block-end: 0; }:root { --wp--style--block-gap: 24px; }:root :where(.is-layout-flow) > :first-child{margin-block-start: 0;}:root :where(.is-layout-flow) > :last-child{margin-block-end: 0;}:root :where(.is-layout-flow) > *{margin-block-start: 24px;margin-block-end: 0;}:root :where(.is-layout-constrained) > :first-child{margin-block-start: 0;}:root :where(.is-layout-constrained) > :last-child{margin-block-end: 0;}:root :where(.is-layout-constrained) > *{margin-block-start: 24px;margin-block-end: 0;}:root :where(.is-layout-flex){gap: 24px;}:root :where(.is-layout-grid){gap: 24px;}.is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}.is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}.is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}.is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}a:where(:not(.wp-element-button)){text-decoration: underline;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+<link rel='stylesheet' id='tu-ivc-css' href='https://ivc.tugraz.at/wp-content/plugins/tu-ivc/public/css/tu-ivc-public.css?ver=1.0.0' media='all' />
+<style id='wpgb-head-inline-css'>
+.wp-grid-builder:not(.wpgb-template),.wpgb-facet{opacity:0.01}.wpgb-facet fieldset{margin:0;padding:0;border:none;outline:none;box-shadow:none}.wpgb-facet fieldset:last-child{margin-bottom:40px;}.wpgb-facet fieldset legend.wpgb-sr-only{height:1px;width:1px}
+/*# sourceURL=wpgb-head-inline-css */
+</style>
+<link rel='stylesheet' id='hello-elementor-css' href='https://ivc.tugraz.at/wp-content/themes/hello-elementor/assets/css/reset.css?ver=3.4.7' media='all' />
+<link rel='stylesheet' id='hello-elementor-theme-style-css' href='https://ivc.tugraz.at/wp-content/themes/hello-elementor/assets/css/theme.css?ver=3.4.7' media='all' />
+<link rel='stylesheet' id='elementor-frontend-css' href='https://ivc.tugraz.at/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=4.0.2' media='all' />
+<link rel='stylesheet' id='widget-image-css' href='https://ivc.tugraz.at/wp-content/plugins/elementor/assets/css/widget-image.min.css?ver=4.0.2' media='all' />
+<link rel='stylesheet' id='widget-nav-menu-css' href='https://ivc.tugraz.at/wp-content/plugins/elementor-pro/assets/css/widget-nav-menu.min.css?ver=4.0.2' media='all' />
+<link rel='stylesheet' id='e-animation-fadeInRight-css' href='https://ivc.tugraz.at/wp-content/plugins/elementor/assets/lib/animations/styles/fadeInRight.min.css?ver=4.0.2' media='all' />
+<link rel='stylesheet' id='widget-off-canvas-css' href='https://ivc.tugraz.at/wp-content/plugins/elementor-pro/assets/css/widget-off-canvas.min.css?ver=4.0.2' media='all' />
+<link rel='stylesheet' id='widget-heading-css' href='https://ivc.tugraz.at/wp-content/plugins/elementor/assets/css/widget-heading.min.css?ver=4.0.2' media='all' />
+<link rel='stylesheet' id='elementor-icons-css' href='https://ivc.tugraz.at/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css?ver=5.48.0' media='all' />
+<link rel='stylesheet' id='elementor-post-618-css' href='https://ivc.tugraz.at/wp-content/uploads/elementor/css/post-618.css?ver=1777443743' media='all' />
+<link rel='stylesheet' id='uael-frontend-css' href='https://ivc.tugraz.at/wp-content/plugins/ultimate-elementor/assets/min-css/uael-frontend.min.css?ver=1.44.2' media='all' />
+<link rel='stylesheet' id='uael-teammember-social-icons-css' href='https://ivc.tugraz.at/wp-content/plugins/elementor/assets/css/widget-social-icons.min.css?ver=3.24.0' media='all' />
+<link rel='stylesheet' id='uael-social-share-icons-brands-css' href='https://ivc.tugraz.at/wp-content/plugins/elementor/assets/lib/font-awesome/css/brands.css?ver=5.15.3' media='all' />
+<link rel='stylesheet' id='uael-social-share-icons-fontawesome-css' href='https://ivc.tugraz.at/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.css?ver=5.15.3' media='all' />
+<link rel='stylesheet' id='uael-nav-menu-icons-css' href='https://ivc.tugraz.at/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.css?ver=5.15.3' media='all' />
+<link rel='stylesheet' id='elementor-post-2097-css' href='https://ivc.tugraz.at/wp-content/uploads/elementor/css/post-2097.css?ver=1777443743' media='all' />
+<link rel='stylesheet' id='elementor-post-2136-css' href='https://ivc.tugraz.at/wp-content/uploads/elementor/css/post-2136.css?ver=1777443744' media='all' />
+<link rel='stylesheet' id='elementor-post-16595-css' href='https://ivc.tugraz.at/wp-content/uploads/elementor/css/post-16595.css?ver=1777443747' media='all' />
+<style id='elementor-pro-custom-fonts-inline-css'>
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 100;
+	font-display: auto;
+	src: url('https://ivc.tugraz.at/wp-content/uploads/Poppins-Thin.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 200;
+	font-display: auto;
+	src: url('https://ivc.tugraz.at/wp-content/uploads/Poppins-ExtraLight.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 300;
+	font-display: auto;
+	src: url('https://ivc.tugraz.at/wp-content/uploads/Poppins-Light.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 400;
+	font-display: auto;
+	src: url('https://ivc.tugraz.at/wp-content/uploads/Poppins-Regular.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 500;
+	font-display: auto;
+	src: url('https://ivc.tugraz.at/wp-content/uploads/Poppins-Medium.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 600;
+	font-display: auto;
+	src: url('https://ivc.tugraz.at/wp-content/uploads/Poppins-SemiBold.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 700;
+	font-display: auto;
+	src: url('https://ivc.tugraz.at/wp-content/uploads/Poppins-Bold.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 800;
+	font-display: auto;
+	src: url('https://ivc.tugraz.at/wp-content/uploads/Poppins-ExtraBold.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Poppins';
+	font-style: normal;
+	font-weight: 900;
+	font-display: auto;
+	src: url('https://ivc.tugraz.at/wp-content/uploads/Poppins-Black.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Poppins';
+	font-style: italic;
+	font-weight: 100;
+	font-display: auto;
+	src: url('https://ivc.tugraz.at/wp-content/uploads/Poppins-ThinItalic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Poppins';
+	font-style: italic;
+	font-weight: 200;
+	font-display: auto;
+	src: url('https://ivc.tugraz.at/wp-content/uploads/Poppins-ExtraLightItalic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Poppins';
+	font-style: italic;
+	font-weight: 300;
+	font-display: auto;
+	src: url('https://ivc.tugraz.at/wp-content/uploads/Poppins-LightItalic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Poppins';
+	font-style: italic;
+	font-weight: 400;
+	font-display: auto;
+	src: url('https://ivc.tugraz.at/wp-content/uploads/Poppins-Italic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Poppins';
+	font-style: italic;
+	font-weight: 500;
+	font-display: auto;
+	src: url('https://ivc.tugraz.at/wp-content/uploads/Poppins-MediumItalic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Poppins';
+	font-style: italic;
+	font-weight: 600;
+	font-display: auto;
+	src: url('https://ivc.tugraz.at/wp-content/uploads/Poppins-SemiBoldItalic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Poppins';
+	font-style: italic;
+	font-weight: 700;
+	font-display: auto;
+	src: url('https://ivc.tugraz.at/wp-content/uploads/Poppins-BoldItalic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Poppins';
+	font-style: italic;
+	font-weight: 800;
+	font-display: auto;
+	src: url('https://ivc.tugraz.at/wp-content/uploads/Poppins-ExtraBoldItalic.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Poppins';
+	font-style: italic;
+	font-weight: 900;
+	font-display: auto;
+	src: url('https://ivc.tugraz.at/wp-content/uploads/Poppins-BlackItalic.ttf') format('truetype');
+}
+
+/*# sourceURL=elementor-pro-custom-fonts-inline-css */
+</style>
+<link rel='stylesheet' id='hello-elementor-child-typography-css' href='https://ivc.tugraz.at/wp-content/themes/hello-theme-child/css/typography.css?ver=2.0.1' media='all' />
+<link rel='stylesheet' id='hello-elementor-child-style-css' href='https://ivc.tugraz.at/wp-content/themes/hello-theme-child/style.css?ver=2.0.1' media='all' />
+<link rel='stylesheet' id='elementor-icons-shared-0-css' href='https://ivc.tugraz.at/wp-content/plugins/elementor/assets/lib/font-awesome/css/fontawesome.min.css?ver=5.15.3' media='all' />
+<link rel='stylesheet' id='elementor-icons-fa-solid-css' href='https://ivc.tugraz.at/wp-content/plugins/elementor/assets/lib/font-awesome/css/solid.min.css?ver=5.15.3' media='all' />
+<script src="https://ivc.tugraz.at/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script src="https://ivc.tugraz.at/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script src="https://ivc.tugraz.at/wp-content/plugins/tu-ivc/public/js/tu-ivc-public.js?ver=1.0.0" id="tu-ivc-js"></script>
+<link rel="https://api.w.org/" href="https://ivc.tugraz.at/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://ivc.tugraz.at/wp-json/wp/v2/tu_ivc_researchproj/20232" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://ivc.tugraz.at/xmlrpc.php?rsd" />
+<meta name="generator" content="WordPress 6.9.4" />
+<link rel='shortlink' href='https://ivc.tugraz.at/?p=20232' />
+<noscript><style>.wp-grid-builder .wpgb-card.wpgb-card-hidden .wpgb-card-wrapper{opacity:1!important;visibility:visible!important;transform:none!important}.wpgb-facet {opacity:1!important;pointer-events:auto!important}.wpgb-facet *:not(.wpgb-pagination-facet){display:none}</style></noscript><meta name="generator" content="Elementor 4.0.2; features: additional_custom_breakpoints; settings: css_print_method-external, google_font-disabled, font_display-auto">
+			<style>
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload),
+				.e-con.e-parent:nth-of-type(n+4):not(.e-lazyloaded):not(.e-no-lazyload) * {
+					background-image: none !important;
+				}
+				@media screen and (max-height: 1024px) {
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+3):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+				@media screen and (max-height: 640px) {
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload),
+					.e-con.e-parent:nth-of-type(n+2):not(.e-lazyloaded):not(.e-no-lazyload) * {
+						background-image: none !important;
+					}
+				}
+			</style>
+			<link rel="icon" href="https://ivc.tugraz.at/wp-content/uploads/tu-ivc-logo-favicon-360x360.png" sizes="32x32" />
+<link rel="icon" href="https://ivc.tugraz.at/wp-content/uploads/tu-ivc-logo-favicon-360x360.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://ivc.tugraz.at/wp-content/uploads/tu-ivc-logo-favicon-360x360.png" />
+<meta name="msapplication-TileImage" content="https://ivc.tugraz.at/wp-content/uploads/tu-ivc-logo-favicon-360x360.png" />
+<style id="rocket-lazyrender-inline-css">[data-wpr-lazyrender] {content-visibility: auto;}</style><meta name="generator" content="WP Rocket 3.21.1" data-wpr-features="wpr_automatic_lazy_rendering wpr_oci wpr_desktop" /></head>
+<body class="wp-singular tu_ivc_researchproj-template-default single single-tu_ivc_researchproj postid-20232 wp-custom-logo wp-embed-responsive wp-theme-hello-elementor wp-child-theme-hello-theme-child hello-elementor-default elementor-default elementor-kit-618 elementor-page-16595">
+
+
+<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+		<header  data-elementor-type="header" data-elementor-id="2097" class="elementor elementor-2097 elementor-location-header" data-elementor-post-type="elementor_library">
+			<div  class="elementor-element elementor-element-04352c0 e-flex e-con-boxed e-con e-parent" data-id="04352c0" data-element_type="container" data-e-type="container">
+					<div  class="e-con-inner">
+		<div class="elementor-element elementor-element-2b00d3d e-con-full e-flex e-con e-child" data-id="2b00d3d" data-element_type="container" data-e-type="container">
+				<div class="elementor-element elementor-element-86228ca elementor-widget elementor-widget-theme-site-logo elementor-widget-image" data-id="86228ca" data-element_type="widget" data-e-type="widget" data-widget_type="theme-site-logo.default">
+				<div class="elementor-widget-container">
+											<a href="https://ivc.tugraz.at">
+			<img loading="lazy" width="1024" height="350" src="https://ivc.tugraz.at/wp-content/uploads/tu-ivc-logo-small.png" class="attachment-full size-full wp-image-16706" alt="Tu ivc logo small" srcset="https://ivc.tugraz.at/wp-content/uploads/tu-ivc-logo-small.png 1024w, https://ivc.tugraz.at/wp-content/uploads/tu-ivc-logo-small-960x328.png 960w, https://ivc.tugraz.at/wp-content/uploads/tu-ivc-logo-small-768x263.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" />				</a>
+											</div>
+				</div>
+		<div class="elementor-element elementor-element-2e3d8b0 e-con-full e-flex e-con e-child" data-id="2e3d8b0" data-element_type="container" data-e-type="container">
+				<div class="elementor-element elementor-element-3d5c0aa elementor-widget elementor-widget-image" data-id="3d5c0aa" data-element_type="widget" data-e-type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+																<a href="https://www.tugraz.at/home" target="_blank">
+							<img loading="lazy" width="146" height="73" src="https://ivc.tugraz.at/wp-content/uploads/tu_graz.png" class="attachment-large size-large wp-image-2109" alt="Tu Graz" />								</a>
+															</div>
+				</div>
+				<div class="elementor-element elementor-element-e17865d elementor-hidden-desktop elementor-hidden-tablet elementor-view-default elementor-widget elementor-widget-icon" data-id="e17865d" data-element_type="widget" data-e-type="widget" data-widget_type="icon.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-icon-wrapper">
+			<a class="elementor-icon" href="#elementor-action%3Aaction%3Doff_canvas%3Aopen%26settings%3DeyJpZCI6IjQyNzcwOTIiLCJkaXNwbGF5TW9kZSI6Im9wZW4ifQ%3D%3D">
+			<svg xmlns="http://www.w3.org/2000/svg" width="50" height="31" viewBox="0 0 50 31" fill="none"><line y1="0.5" x2="50" y2="0.5" stroke="#580F8B"></line><line y1="15.5" x2="50" y2="15.5" stroke="#580F8B"></line><line y1="30.5" x2="50" y2="30.5" stroke="#580F8B"></line></svg>			</a>
+		</div>
+						</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-4277092 elementor-widget elementor-widget-off-canvas" data-id="4277092" data-element_type="widget" data-e-type="widget" data-settings="{&quot;entrance_animation_mobile&quot;:&quot;fadeInRight&quot;,&quot;exit_animation_mobile&quot;:&quot;fadeInRight&quot;}" data-widget_type="off-canvas.default">
+				<div class="elementor-widget-container">
+							<div id="off-canvas-4277092" class="e-off-canvas" role="dialog" aria-hidden="true" aria-label="Off-Canvas" aria-modal="true" inert="" data-delay-child-handlers="true">
+			<div class="e-off-canvas__overlay"></div>
+			<div class="e-off-canvas__main">
+				<div class="e-off-canvas__content">
+					<div class="elementor-element elementor-element-d8f034a e-con-full e-flex e-con e-child" data-id="d8f034a" data-element_type="container" data-e-type="container">
+		<div class="elementor-element elementor-element-0d31c12 e-flex e-con-boxed e-con e-child" data-id="0d31c12" data-element_type="container" data-e-type="container">
+					<div  class="e-con-inner">
+				<div class="elementor-element elementor-element-647b730 elementor-view-default elementor-widget elementor-widget-icon" data-id="647b730" data-element_type="widget" data-e-type="widget" data-widget_type="icon.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-icon-wrapper">
+			<a class="elementor-icon" href="#elementor-action%3Aaction%3Doff_canvas%3Aclose%26settings%3DeyJpZCI6IjQyNzcwOTIiLCJkaXNwbGF5TW9kZSI6ImNsb3NlIn0%3D">
+			<svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 72 72" fill="none"><line x1="17.969" y1="53.3242" x2="53.3243" y2="17.9688" stroke="#580F8B"></line><line x1="18.6761" y1="17.9687" x2="54.0314" y2="53.3241" stroke="#580F8B"></line></svg>			</a>
+		</div>
+						</div>
+				</div>
+					</div>
+				</div>
+				<div class="elementor-element elementor-element-dd0a087 elementor-nav-menu__align-start elementor-nav-menu--dropdown-none elementor-widget__width-initial rwp-menu elementor-widget-mobile__width-inherit elementor-widget elementor-widget-nav-menu" data-id="dd0a087" data-element_type="widget" data-e-type="widget" data-settings="{&quot;layout&quot;:&quot;vertical&quot;,&quot;submenu_icon&quot;:{&quot;value&quot;:&quot;&lt;i class=\&quot;fas fa-caret-down\&quot; aria-hidden=\&quot;true\&quot;&gt;&lt;\/i&gt;&quot;,&quot;library&quot;:&quot;fa-solid&quot;}}" data-widget_type="nav-menu.default">
+				<div class="elementor-widget-container">
+								<nav aria-label="Menü" class="elementor-nav-menu--main elementor-nav-menu__container elementor-nav-menu--layout-vertical e--pointer-none">
+				<ul id="menu-1-dd0a087" class="elementor-nav-menu sm-vertical"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1698"><a href="https://ivc.tugraz.at/about/" class="elementor-item">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1697"><a href="https://ivc.tugraz.at/research/" class="elementor-item">Research</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1696"><a href="https://ivc.tugraz.at/teaching/" class="elementor-item">Teaching</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1695"><a href="https://ivc.tugraz.at/people/" class="elementor-item">People</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20330"><a href="https://ivc.tugraz.at/news/" class="elementor-item">News</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1692"><a href="https://ivc.tugraz.at/contact/" class="elementor-item">Contact</a></li>
+</ul>			</nav>
+						<nav class="elementor-nav-menu--dropdown elementor-nav-menu__container" aria-hidden="true">
+				<ul id="menu-2-dd0a087" class="elementor-nav-menu sm-vertical"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1698"><a href="https://ivc.tugraz.at/about/" class="elementor-item" tabindex="-1">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1697"><a href="https://ivc.tugraz.at/research/" class="elementor-item" tabindex="-1">Research</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1696"><a href="https://ivc.tugraz.at/teaching/" class="elementor-item" tabindex="-1">Teaching</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1695"><a href="https://ivc.tugraz.at/people/" class="elementor-item" tabindex="-1">People</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20330"><a href="https://ivc.tugraz.at/news/" class="elementor-item" tabindex="-1">News</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1692"><a href="https://ivc.tugraz.at/contact/" class="elementor-item" tabindex="-1">Contact</a></li>
+</ul>			</nav>
+						</div>
+				</div>
+		<div class="elementor-element elementor-element-d5df202 e-con-full e-flex e-con e-child" data-id="d5df202" data-element_type="container" data-e-type="container">
+				<div class="elementor-element elementor-element-be0d874 elementor-widget elementor-widget-theme-site-logo elementor-widget-image" data-id="be0d874" data-element_type="widget" data-e-type="widget" data-widget_type="theme-site-logo.default">
+				<div class="elementor-widget-container">
+											<a href="https://ivc.tugraz.at">
+			<img loading="lazy" width="1024" height="350" src="https://ivc.tugraz.at/wp-content/uploads/tu-ivc-logo-small.png" class="attachment-full size-full wp-image-16706" alt="Tu ivc logo small" srcset="https://ivc.tugraz.at/wp-content/uploads/tu-ivc-logo-small.png 1024w, https://ivc.tugraz.at/wp-content/uploads/tu-ivc-logo-small-960x328.png 960w, https://ivc.tugraz.at/wp-content/uploads/tu-ivc-logo-small-768x263.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" />				</a>
+											</div>
+				</div>
+				<div class="elementor-element elementor-element-9512522 elementor-widget elementor-widget-image" data-id="9512522" data-element_type="widget" data-e-type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+																<a href="https://www.tugraz.at/home" target="_blank">
+							<img loading="lazy" width="146" height="73" src="https://ivc.tugraz.at/wp-content/uploads/tu_graz.png" class="attachment-large size-large wp-image-2109" alt="Tu Graz" />								</a>
+															</div>
+				</div>
+				</div>
+				</div>
+						</div>
+			</div>
+		</div>
+						</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-94e9914 elementor-nav-menu__align-center elementor-nav-menu--dropdown-mobile elementor-widget__width-initial rwp-menu elementor-hidden-mobile elementor-nav-menu__text-align-aside elementor-nav-menu--toggle elementor-nav-menu--burger elementor-widget elementor-widget-nav-menu" data-id="94e9914" data-element_type="widget" data-e-type="widget" data-settings="{&quot;submenu_icon&quot;:{&quot;value&quot;:&quot;&lt;i class=\&quot;\&quot; aria-hidden=\&quot;true\&quot;&gt;&lt;\/i&gt;&quot;,&quot;library&quot;:&quot;&quot;},&quot;layout&quot;:&quot;horizontal&quot;,&quot;toggle&quot;:&quot;burger&quot;}" data-widget_type="nav-menu.default">
+				<div class="elementor-widget-container">
+								<nav aria-label="Menü" class="elementor-nav-menu--main elementor-nav-menu__container elementor-nav-menu--layout-horizontal e--pointer-none">
+				<ul id="menu-1-94e9914" class="elementor-nav-menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1698"><a href="https://ivc.tugraz.at/about/" class="elementor-item">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1697"><a href="https://ivc.tugraz.at/research/" class="elementor-item">Research</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1696"><a href="https://ivc.tugraz.at/teaching/" class="elementor-item">Teaching</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1695"><a href="https://ivc.tugraz.at/people/" class="elementor-item">People</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20330"><a href="https://ivc.tugraz.at/news/" class="elementor-item">News</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1692"><a href="https://ivc.tugraz.at/contact/" class="elementor-item">Contact</a></li>
+</ul>			</nav>
+					<div class="elementor-menu-toggle" role="button" tabindex="0" aria-label="Menu Toggle" aria-expanded="false">
+			<i aria-hidden="true" role="presentation" class="elementor-menu-toggle__icon--open eicon-menu-bar"></i><i aria-hidden="true" role="presentation" class="elementor-menu-toggle__icon--close eicon-close"></i>		</div>
+					<nav class="elementor-nav-menu--dropdown elementor-nav-menu__container" aria-hidden="true">
+				<ul id="menu-2-94e9914" class="elementor-nav-menu"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1698"><a href="https://ivc.tugraz.at/about/" class="elementor-item" tabindex="-1">About</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1697"><a href="https://ivc.tugraz.at/research/" class="elementor-item" tabindex="-1">Research</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1696"><a href="https://ivc.tugraz.at/teaching/" class="elementor-item" tabindex="-1">Teaching</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1695"><a href="https://ivc.tugraz.at/people/" class="elementor-item" tabindex="-1">People</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-20330"><a href="https://ivc.tugraz.at/news/" class="elementor-item" tabindex="-1">News</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1692"><a href="https://ivc.tugraz.at/contact/" class="elementor-item" tabindex="-1">Contact</a></li>
+</ul>			</nav>
+						</div>
+				</div>
+					</div>
+				</div>
+				</header>
+				<div  data-elementor-type="single-post" data-elementor-id="16595" class="elementor elementor-16595 elementor-location-single post-20232 tu_ivc_researchproj type-tu_ivc_researchproj status-publish has-post-thumbnail hentry" data-elementor-post-type="elementor_library">
+			<div  class="elementor-element elementor-element-221cd85 rwp-section p-l e-flex e-con-boxed e-con e-parent" data-id="221cd85" data-element_type="container" data-e-type="container">
+					<div  class="e-con-inner">
+				<div class="elementor-element elementor-element-465d03d elementor-widget elementor-widget-image" data-id="465d03d" data-element_type="widget" data-e-type="widget" data-widget_type="image.default">
+				<div class="elementor-widget-container">
+															<img fetchpriority="high" loading="lazy" width="793" height="559" src="https://ivc.tugraz.at/wp-content/uploads/fyler3.png" class="attachment-large size-large wp-image-20233" alt="Fyler3" srcset="https://ivc.tugraz.at/wp-content/uploads/fyler3.png 793w, https://ivc.tugraz.at/wp-content/uploads/fyler3-768x541.png 768w" sizes="(max-width: 793px) 100vw, 793px" />															</div>
+				</div>
+		<div class="elementor-element elementor-element-7de7863 e-con-full e-flex e-con e-child" data-id="7de7863" data-element_type="container" data-e-type="container">
+		<div class="elementor-element elementor-element-6c5e22a e-con-full e-flex e-con e-child" data-id="6c5e22a" data-element_type="container" data-e-type="container">
+				<div class="elementor-element elementor-element-fc3a2bd elementor-widget elementor-widget-heading" data-id="fc3a2bd" data-element_type="widget" data-e-type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+					<h1 class="elementor-heading-title elementor-size-default">Semantic Drone Dataset</h1>				</div>
+				</div>
+				<div class="elementor-element elementor-element-2821a77 elementor-widget elementor-widget-theme-post-content" data-id="2821a77" data-element_type="widget" data-e-type="widget" data-widget_type="theme-post-content.default">
+				<div class="elementor-widget-container">
+					
+<h1 class="wp-block-heading">Dataset Overview</h1>
+
+
+
+<p>The Semantic Drone Dataset focuses on semantic understanding of urban scenes for increasing the safety of autonomous drone flight and landing procedures. The imagery depicts&nbsp; more than 20 houses from nadir (bird&#8217;s eye) view acquired at an altitude of 5 to 30 meters above ground. A high resolution camera was used to acquire images at a size of 6000x4000px (24Mpx). The training set contains 400 publicly available images and the test set is made up of 200 private images.</p>
+
+
+
+<h4 class="wp-block-heading">Person Detection</h4>
+
+
+
+<p>For the task of person detection the dataset contains bounding box annotations of the training and test set.</p>
+
+
+
+<h4 class="wp-block-heading">Semantic Segmentation</h4>
+
+
+
+<p>We prepared pixel-accurate annotation for the same training and test set. The complexity of the dataset is limited to 20 classes as listed in the following table. &nbsp; Table 1: Semanic classes of the Drone Dataset</p>
+
+
+
+<figure class="wp-block-table"><table class="has-fixed-layout"><tbody><tr><td>tree<br>grass<br>other vegetation<br>dirt<br>gravel</td><td>rocks<br>water<br>paved area<br>pool<br>person</td><td>dog<br>car<br>bicycle<br>roof<br>wall</td><td>fence<br>fence-pole<br>window<br>door<br>obstacle</td></tr></tbody></table></figure>
+
+
+
+<h4 class="wp-block-heading">Additional Data Available</h4>
+
+
+
+<ul class="wp-block-list">
+<li>High resolution images at 1Hz</li>
+
+
+
+<li>Fish-eye stereo images at 5Hz with synchronized IMU measurements</li>
+
+
+
+<li>Thermal images at 1Hz</li>
+
+
+
+<li>Ground control points</li>
+
+
+
+<li>3D ground truth of 3 houses acquired by a total station</li>
+</ul>
+
+
+
+<h2 class="wp-block-heading">Example images</h2>
+
+
+
+<figure class="wp-block-gallery has-nested-images columns-default is-cropped wp-block-gallery-1 is-layout-flex wp-block-gallery-is-layout-flex">
+<figure class="wp-block-image size-large"><img fetchpriority="high" fetchpriority="high" decoding="async" width="1200" height="800" data-id="20235" src="https://ivc.tugraz.at/wp-content/uploads/csm_031_b2d8d44df6.jpg" alt="Csm 031 b2d8d44df6" class="wp-image-20235" srcset="https://ivc.tugraz.at/wp-content/uploads/csm_031_b2d8d44df6.jpg 1200w, https://ivc.tugraz.at/wp-content/uploads/csm_031_b2d8d44df6-960x640.jpg 960w, https://ivc.tugraz.at/wp-content/uploads/csm_031_b2d8d44df6-768x512.jpg 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1200" height="800" data-id="20234" src="https://ivc.tugraz.at/wp-content/uploads/csm_031gt_66dc6ad2a4.png" alt="Csm 031gt 66dc6ad2a4" class="wp-image-20234" srcset="https://ivc.tugraz.at/wp-content/uploads/csm_031gt_66dc6ad2a4.png 1200w, https://ivc.tugraz.at/wp-content/uploads/csm_031gt_66dc6ad2a4-960x640.png 960w, https://ivc.tugraz.at/wp-content/uploads/csm_031gt_66dc6ad2a4-768x512.png 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img decoding="async" width="1200" height="800" data-id="20236" src="https://ivc.tugraz.at/wp-content/uploads/csm_040_0432fa5b91.jpg" alt="Csm 040 0432fa5b91" class="wp-image-20236" srcset="https://ivc.tugraz.at/wp-content/uploads/csm_040_0432fa5b91.jpg 1200w, https://ivc.tugraz.at/wp-content/uploads/csm_040_0432fa5b91-960x640.jpg 960w, https://ivc.tugraz.at/wp-content/uploads/csm_040_0432fa5b91-768x512.jpg 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" loading="lazy" decoding="async" width="1200" height="800" data-id="20237" src="https://ivc.tugraz.at/wp-content/uploads/csm_040gt_f18c01ac82.png" alt="Csm 040gt f18c01ac82" class="wp-image-20237" srcset="https://ivc.tugraz.at/wp-content/uploads/csm_040gt_f18c01ac82.png 1200w, https://ivc.tugraz.at/wp-content/uploads/csm_040gt_f18c01ac82-960x640.png 960w, https://ivc.tugraz.at/wp-content/uploads/csm_040gt_f18c01ac82-768x512.png 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" loading="lazy" decoding="async" width="1200" height="800" data-id="20238" src="https://ivc.tugraz.at/wp-content/uploads/csm_250_4fe348a29f.jpg" alt="Csm 250 4fe348a29f" class="wp-image-20238" srcset="https://ivc.tugraz.at/wp-content/uploads/csm_250_4fe348a29f.jpg 1200w, https://ivc.tugraz.at/wp-content/uploads/csm_250_4fe348a29f-960x640.jpg 960w, https://ivc.tugraz.at/wp-content/uploads/csm_250_4fe348a29f-768x512.jpg 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" loading="lazy" decoding="async" width="1200" height="800" data-id="20239" src="https://ivc.tugraz.at/wp-content/uploads/csm_250gt_8cc8832ecb.png" alt="Csm 250gt 8cc8832ecb" class="wp-image-20239" srcset="https://ivc.tugraz.at/wp-content/uploads/csm_250gt_8cc8832ecb.png 1200w, https://ivc.tugraz.at/wp-content/uploads/csm_250gt_8cc8832ecb-960x640.png 960w, https://ivc.tugraz.at/wp-content/uploads/csm_250gt_8cc8832ecb-768x512.png 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" loading="lazy" decoding="async" width="1200" height="800" data-id="20240" src="https://ivc.tugraz.at/wp-content/uploads/csm_290_d41fe0ccdd.jpg" alt="Csm 290 d41fe0ccdd" class="wp-image-20240" srcset="https://ivc.tugraz.at/wp-content/uploads/csm_290_d41fe0ccdd.jpg 1200w, https://ivc.tugraz.at/wp-content/uploads/csm_290_d41fe0ccdd-960x640.jpg 960w, https://ivc.tugraz.at/wp-content/uploads/csm_290_d41fe0ccdd-768x512.jpg 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></figure>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" loading="lazy" decoding="async" width="1200" height="800" data-id="20241" src="https://ivc.tugraz.at/wp-content/uploads/csm_290gt_782dac9564.png" alt="Csm 290gt 782dac9564" class="wp-image-20241" srcset="https://ivc.tugraz.at/wp-content/uploads/csm_290gt_782dac9564.png 1200w, https://ivc.tugraz.at/wp-content/uploads/csm_290gt_782dac9564-960x640.png 960w, https://ivc.tugraz.at/wp-content/uploads/csm_290gt_782dac9564-768x512.png 768w" sizes="(max-width: 1200px) 100vw, 1200px" /></figure>
+</figure>
+
+
+
+<h1 class="wp-block-heading">Citation</h1>
+
+
+
+<p>If you use this dataset in your research, please cite the following URL:</p>
+
+
+
+<p><a href="https://ivc.tugraz.at/tu_ivc_researchproj/semantic-drone-dataset">https://ivc.tugraz.at/tu_ivc_researchproj/semantic-drone-dataset</a></p>
+
+
+
+<h1 class="wp-block-heading">License</h1>
+
+
+
+<p>The Drone Dataset is made freely available to academic and non-academic entities for non-commercial purposes such as academic research, teaching, scientific publications, or personal experimentation. Permission is granted to use the data given that you agree:</p>
+
+
+
+<ol class="wp-block-list">
+<li>That the dataset comes &#8220;AS IS&#8221;, without express or implied warranty. Although every effort has been made to ensure accuracy, we (Graz University of Technology) do not accept any responsibility for errors or omissions.</li>
+
+
+
+<li>That you include a reference to the Semantic Drone Dataset in any work that makes use of the dataset. For research papers or other media link to the Semantic Drone Dataset <a href="https://ivc.tugraz.at/tu_ivc_researchproj/semantic-drone-dataset/" target="_blank" rel="noopener" title="">webpage</a>.</li>
+
+
+
+<li>That you do not distribute this dataset or modified versions. It is permissible to distribute derivative works in as far as they are abstract representations of this dataset (such as models trained on it or additional annotations that do not directly include any of our data) and do not allow to recover the dataset or something similar in character.</li>
+
+
+
+<li>That you may not use the dataset or any derivative work for commercial purposes as, for example, licensing or selling the data, or using the data with a purpose to procure a commercial gain.</li>
+
+
+
+<li>That all rights not expressly granted to you are reserved by us (Graz University of Technology).</li>
+</ol>
+
+
+
+<h1 class="wp-block-heading">Download</h1>
+
+
+
+<p>The data set can be downloaded using this <a href="https://cloud.tugraz.at/index.php/s/csxYfaKmie6LyqA" target="_blank" rel="noreferrer noopener">link.</a></p>
+
+
+
+<p><strong>Contents of the training set:</strong></p>
+
+
+
+<ul class="wp-block-list">
+<li>Images</li>
+
+
+
+<li>Bounding boxes as python pickle file</li>
+
+
+
+<li>(optional) Bounding boxes as xml</li>
+
+
+
+<li>(optional) Bounding boxes as mask images</li>
+</ul>
+
+
+
+<h1 class="wp-block-heading">Acknowledgement</h1>
+
+
+
+<p>We would like to thank Prof. Werner Lienhart and Dipl.-Ing Slaven Kalenjuk of the <a href="https://www.tugraz.at/institute/igms/home/" target="_blank" rel="noreferrer noopener">Institute of Engineering Geodesy and Measurement Systems (IGMS)</a>, Graz University of Technology for supporting us by acquiring the 3D ground truth data using a total station.</p>
+				</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-bf4358d e-con-full e-flex e-con e-child" data-id="bf4358d" data-element_type="container" data-e-type="container">
+		<div class="elementor-element elementor-element-2988497 e-con-full e-flex e-con e-child" data-id="2988497" data-element_type="container" data-e-type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+				<div class="elementor-element elementor-element-69eca1f elementor-widget elementor-widget-text-editor" data-id="69eca1f" data-element_type="widget" data-e-type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+									<p>Contact</p>								</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-452c700 elementor-widget elementor-widget-shortcode" data-id="452c700" data-element_type="widget" data-e-type="widget" data-widget_type="shortcode.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-shortcode"><div class="tu-ivc-person-contact-data-wrapper">
+	<!-- Display the contact data -->
+		<div class="tu-ivc-person-contact-data">
+		<div class="tu-ivc-person-contact-data-header">
+							<a class="research-team" href="https://ivc.tugraz.at/research-teams/team-fraundorfer/" title="Link to research team Team Fraundorfer">Team Fraundorfer</a>
+						<a class="contact-person" href="https://ivc.tugraz.at/people/friedrich-fraundorfer/" title="Link to profile of Friedrich Fraundorfer">Friedrich Fraundorfer</a>
+		</div>
+		<!-- Display the name -->
+					<div class="tu-ivc-person-contact-data-item">
+				<i class="fas fa-envelope"></i>
+				<a href="mailto:friedrich.fraundorfer@tugraz.at" target="_blank" rel="noopener noreferrer" title="Profile page of Friedrich Fraundorfer">
+					<span>friedrich.fraundorfer@tugraz.at</span>
+				</a>
+			</div>
+					<div class="tu-ivc-person-contact-data-item">
+				<i class="fas fa-phone"></i>
+				<a href="tel:+43%20316%20873%20-%205020" target="_blank" rel="noopener noreferrer" title="Profile page of Friedrich Fraundorfer">
+					<span>+43 316 873 - 5020</span>
+				</a>
+			</div>
+					<div class="tu-ivc-person-contact-data-item">
+				<i class="fas fa-globe"></i>
+				<a href="https://ivc.tugraz.at/people/friedrich-fraundorfer/" target="_blank" rel="noopener noreferrer" title="Profile page of Friedrich Fraundorfer">
+					<span>Profile</span>
+				</a>
+			</div>
+			</div>
+	<div class="tu-ivc-person-featured-image"><img loading="lazy" width="640" height="960" src="https://ivc.tugraz.at/wp-content/uploads/Friedrich-Fraundorfer-640x960.jpg" class="tu-ivc-person-featured-image wp-post-image" alt="Portrait of Friedrich Fraundorfer" decoding="async" srcset="https://ivc.tugraz.at/wp-content/uploads/Friedrich-Fraundorfer-640x960.jpg 640w, https://ivc.tugraz.at/wp-content/uploads/Friedrich-Fraundorfer-1280x1920.jpg 1280w, https://ivc.tugraz.at/wp-content/uploads/Friedrich-Fraundorfer-768x1152.jpg 768w, https://ivc.tugraz.at/wp-content/uploads/Friedrich-Fraundorfer-1024x1536.jpg 1024w, https://ivc.tugraz.at/wp-content/uploads/Friedrich-Fraundorfer-1365x2048.jpg 1365w, https://ivc.tugraz.at/wp-content/uploads/Friedrich-Fraundorfer.jpg 1586w" sizes="(max-width: 640px) 100vw, 640px" /></div>	</div></div>
+						</div>
+				</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div data-wpr-lazyrender="1" class="elementor-element elementor-element-76fd40d rwp-section p-m e-flex e-con-boxed e-con e-parent" data-id="76fd40d" data-element_type="container" data-e-type="container">
+					<div  class="e-con-inner">
+		<div class="elementor-element elementor-element-ca546fa e-con-full e-flex e-con e-child" data-id="ca546fa" data-element_type="container" data-e-type="container">
+				<div class="elementor-element elementor-element-443db6c elementor-widget elementor-widget-shortcode" data-id="443db6c" data-element_type="widget" data-e-type="widget" data-widget_type="shortcode.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-shortcode"></div>
+						</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-8a472e0 e-con-full e-flex e-con e-child" data-id="8a472e0" data-element_type="container" data-e-type="container">
+				<div class="elementor-element elementor-element-9ff8748 elementor-widget elementor-widget-shortcode" data-id="9ff8748" data-element_type="widget" data-e-type="widget" data-widget_type="shortcode.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-shortcode"><div class='tu-ivc-project-duration'><h2>Project Duration</h2>2018 - 2019</div></div>
+						</div>
+				</div>
+				</div>
+		<div class="elementor-element elementor-element-57ca626 e-con-full e-flex e-con e-child" data-id="57ca626" data-element_type="container" data-e-type="container">
+				<div class="elementor-element elementor-element-4905ec8 elementor-widget elementor-widget-shortcode" data-id="4905ec8" data-element_type="widget" data-e-type="widget" data-widget_type="shortcode.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-shortcode"></div>
+						</div>
+				</div>
+				</div>
+					</div>
+				</div>
+		<div data-wpr-lazyrender="1" class="elementor-element elementor-element-96e6e65 rwp-section p-m e-flex e-con-boxed e-con e-parent" data-id="96e6e65" data-element_type="container" data-e-type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-554be20 elementor-widget elementor-widget-shortcode" data-id="554be20" data-element_type="widget" data-e-type="widget" data-widget_type="shortcode.default">
+				<div class="elementor-widget-container">
+							<div class="elementor-shortcode"></div>
+						</div>
+				</div>
+					</div>
+				</div>
+				</div>
+				<footer data-elementor-type="footer" data-elementor-id="2136" class="elementor elementor-2136 elementor-location-footer" data-elementor-post-type="elementor_library">
+			<div class="elementor-element elementor-element-0800e11 e-flex e-con-boxed e-con e-parent" data-id="0800e11" data-element_type="container" data-e-type="container">
+					<div class="e-con-inner">
+				<div class="elementor-element elementor-element-155e59b elementor-widget__width-initial elementor-widget elementor-widget-text-editor" data-id="155e59b" data-element_type="widget" data-e-type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+									© IVC 2025   |   								</div>
+				</div>
+				<div class="elementor-element elementor-element-da22f71 elementor-widget__width-initial elementor-widget elementor-widget-text-editor" data-id="da22f71" data-element_type="widget" data-e-type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+									<p><a href="https://www.tugraz.at/en/about-this-page/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>   |   <a href="https://www.tugraz.at/en/about-this-page/legal-notice/" target="_blank" rel="noopener">Imprint</a></p>								</div>
+				</div>
+					</div>
+				</div>
+				</footer>
+		
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/hello-theme-child/*","/wp-content/themes/hello-elementor/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+				<script type="text/javascript">
+				(function() {
+					// Global page view and session tracking for UAEL Modal Popup feature
+					try {
+						// Session tracking: increment if this is a new session
+						
+						// Check if any popup on this page uses current page tracking
+						var hasCurrentPageTracking = false;
+						var currentPagePopups = [];
+						// Check all modal popups on this page for current page tracking
+						if (typeof jQuery !== 'undefined') {
+							jQuery('.uael-modal-parent-wrapper').each(function() {
+								var scope = jQuery(this).data('page-views-scope');
+								var enabled = jQuery(this).data('page-views-enabled');
+								var popupId = jQuery(this).attr('id').replace('-overlay', '');	
+								if (enabled === 'yes' && scope === 'current') {
+									hasCurrentPageTracking = true;
+									currentPagePopups.push(popupId);
+								}
+							});
+						}
+						// Global tracking: ALWAYS increment if ANY popup on the site uses global tracking
+												// Current page tracking: increment per-page counters
+						if (hasCurrentPageTracking && currentPagePopups.length > 0) {
+							var currentUrl = window.location.href;
+							var urlKey = 'uael_page_views_' + btoa(currentUrl).replace(/[^a-zA-Z0-9]/g, '').substring(0, 50);
+							var currentPageViews = parseInt(localStorage.getItem(urlKey) || '0');
+							currentPageViews++;
+							localStorage.setItem(urlKey, currentPageViews.toString());
+							// Store URL mapping for each popup
+							for (var i = 0; i < currentPagePopups.length; i++) {
+								var popupUrlKey = 'uael_popup_' + currentPagePopups[i] + '_url_key';
+								localStorage.setItem(popupUrlKey, urlKey);
+							}
+						}
+					} catch (e) {
+						// Silently fail if localStorage is not available
+					}
+				})();
+				</script>
+				<script type="application/ld+json" id="slim-seo-schema">{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "WebSite",
+            "@id": "https://ivc.tugraz.at/#website",
+            "url": "https://ivc.tugraz.at/",
+            "name": "IVC",
+            "inLanguage": "en-US",
+            "potentialAction": {
+                "@id": "https://ivc.tugraz.at/#searchaction"
+            },
+            "publisher": {
+                "@id": "https://ivc.tugraz.at/#organization"
+            }
+        },
+        {
+            "@type": "SearchAction",
+            "@id": "https://ivc.tugraz.at/#searchaction",
+            "target": "https://ivc.tugraz.at/?s={search_term_string}",
+            "query-input": "required name=search_term_string"
+        },
+        {
+            "@type": "BreadcrumbList",
+            "name": "Breadcrumbs",
+            "@id": "https://ivc.tugraz.at/research-project/semantic-drone-dataset/#breadcrumblist",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://ivc.tugraz.at/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Semantic Drone Dataset"
+                }
+            ]
+        },
+        {
+            "@type": "WebPage",
+            "@id": "https://ivc.tugraz.at/research-project/semantic-drone-dataset/#webpage",
+            "url": "https://ivc.tugraz.at/research-project/semantic-drone-dataset/",
+            "inLanguage": "en-US",
+            "name": "Semantic Drone Dataset – IVC",
+            "description": "Dataset Overview The Semantic Drone Dataset focuses on semantic understanding of urban scenes for increasing the safety of autonomous drone flight and landing p",
+            "datePublished": "2025-09-09T13:41:14+02:00",
+            "dateModified": "2025-09-09T13:41:15+02:00",
+            "isPartOf": {
+                "@id": "https://ivc.tugraz.at/#website"
+            },
+            "breadcrumb": {
+                "@id": "https://ivc.tugraz.at/research-project/semantic-drone-dataset/#breadcrumblist"
+            },
+            "primaryImageOfPage": {
+                "@id": "https://ivc.tugraz.at/research-project/semantic-drone-dataset/#thumbnail"
+            },
+            "image": {
+                "@id": "https://ivc.tugraz.at/research-project/semantic-drone-dataset/#thumbnail"
+            }
+        },
+        {
+            "@type": "Organization",
+            "@id": "https://ivc.tugraz.at/#organization",
+            "url": "https://ivc.tugraz.at/",
+            "name": "IVC"
+        },
+        {
+            "@type": "ImageObject",
+            "@id": "https://ivc.tugraz.at/research-project/semantic-drone-dataset/#thumbnail",
+            "url": "https://ivc.tugraz.at/wp-content/uploads/fyler3.png",
+            "contentUrl": "https://ivc.tugraz.at/wp-content/uploads/fyler3.png",
+            "width": 793,
+            "height": 559
+        }
+    ]
+}</script>			<script>
+				const lazyloadRunObserver = () => {
+					const lazyloadBackgrounds = document.querySelectorAll( `.e-con.e-parent:not(.e-lazyloaded)` );
+					const lazyloadBackgroundObserver = new IntersectionObserver( ( entries ) => {
+						entries.forEach( ( entry ) => {
+							if ( entry.isIntersecting ) {
+								let lazyloadBackground = entry.target;
+								if( lazyloadBackground ) {
+									lazyloadBackground.classList.add( 'e-lazyloaded' );
+								}
+								lazyloadBackgroundObserver.unobserve( entry.target );
+							}
+						});
+					}, { rootMargin: '200px 0px 200px 0px' } );
+					lazyloadBackgrounds.forEach( ( lazyloadBackground ) => {
+						lazyloadBackgroundObserver.observe( lazyloadBackground );
+					} );
+				};
+				const events = [
+					'DOMContentLoaded',
+					'elementor/lazyload/observe',
+				];
+				events.forEach( ( event ) => {
+					document.addEventListener( event, lazyloadRunObserver );
+				} );
+			</script>
+			<style id='core-block-supports-inline-css'>
+.wp-block-gallery.wp-block-gallery-1{--wp--style--unstable-gallery-gap:var( --wp--style--gallery-gap-default, var( --gallery-block--gutter-size, var( --wp--style--block-gap, 0.5em ) ) );gap:var( --wp--style--gallery-gap-default, var( --gallery-block--gutter-size, var( --wp--style--block-gap, 0.5em ) ) );}
+/*# sourceURL=core-block-supports-inline-css */
+</style>
+<script src="https://ivc.tugraz.at/wp-content/plugins/elementor/assets/js/webpack.runtime.min.js?ver=4.0.2" id="elementor-webpack-runtime-js"></script>
+<script src="https://ivc.tugraz.at/wp-content/plugins/elementor/assets/js/frontend-modules.min.js?ver=4.0.2" id="elementor-frontend-modules-js"></script>
+<script src="https://ivc.tugraz.at/wp-includes/js/jquery/ui/core.min.js?ver=1.13.3" id="jquery-ui-core-js"></script>
+<script id="elementor-frontend-js-extra">
+var uael_particles_script = {"uael_particles_url":"https://ivc.tugraz.at/wp-content/plugins/ultimate-elementor/assets/min-js/uael-particles.min.js","particles_url":"https://ivc.tugraz.at/wp-content/plugins/ultimate-elementor/assets/lib/particles/particles.min.js","snowflakes_image":"https://ivc.tugraz.at/wp-content/plugins/ultimate-elementor/assets/img/snowflake.svg","gift":"https://ivc.tugraz.at/wp-content/plugins/ultimate-elementor/assets/img/gift.png","tree":"https://ivc.tugraz.at/wp-content/plugins/ultimate-elementor/assets/img/tree.png","skull":"https://ivc.tugraz.at/wp-content/plugins/ultimate-elementor/assets/img/skull.png","ghost":"https://ivc.tugraz.at/wp-content/plugins/ultimate-elementor/assets/img/ghost.png","moon":"https://ivc.tugraz.at/wp-content/plugins/ultimate-elementor/assets/img/moon.png","bat":"https://ivc.tugraz.at/wp-content/plugins/ultimate-elementor/assets/img/bat.png","pumpkin":"https://ivc.tugraz.at/wp-content/plugins/ultimate-elementor/assets/img/pumpkin.png"};
+//# sourceURL=elementor-frontend-js-extra
+</script>
+<script id="elementor-frontend-js-before">
+var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false,"isScriptDebug":false},"i18n":{"shareOnFacebook":"Share on Facebook","shareOnTwitter":"Share on Twitter","pinIt":"Pin it","download":"Download","downloadImage":"Download image","fullscreen":"Fullscreen","zoom":"Zoom","share":"Share","playVideo":"Play Video","previous":"Previous","next":"Next","close":"Close","a11yCarouselPrevSlideMessage":"Previous slide","a11yCarouselNextSlideMessage":"Next slide","a11yCarouselFirstSlideMessage":"This is the first slide","a11yCarouselLastSlideMessage":"This is the last slide","a11yCarouselPaginationBulletMessage":"Go to slide"},"is_rtl":false,"breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"responsive":{"breakpoints":{"mobile":{"label":"Mobile Portrait","value":767,"default_value":767,"direction":"max","is_enabled":true},"mobile_extra":{"label":"Mobile Landscape","value":880,"default_value":880,"direction":"max","is_enabled":false},"tablet":{"label":"Tablet Portrait","value":1024,"default_value":1024,"direction":"max","is_enabled":true},"tablet_extra":{"label":"Tablet Landscape","value":1200,"default_value":1200,"direction":"max","is_enabled":false},"laptop":{"label":"Laptop","value":1366,"default_value":1366,"direction":"max","is_enabled":false},"widescreen":{"label":"Widescreen","value":2400,"default_value":2400,"direction":"min","is_enabled":false}},"hasCustomBreakpoints":false},"version":"4.0.2","is_static":false,"experimentalFeatures":{"additional_custom_breakpoints":true,"container":true,"theme_builder_v2":true,"nested-elements":true,"global_classes_should_enforce_capabilities":true,"e_variables":true,"e_opt_in_v4_page":true,"e_components":true,"e_interactions":true,"e_widget_creation":true,"import-export-customization":true,"e_pro_atomic_form":true,"e_pro_variables":true,"e_pro_interactions":true},"urls":{"assets":"https:\/\/ivc.tugraz.at\/wp-content\/plugins\/elementor\/assets\/","ajaxurl":"https:\/\/ivc.tugraz.at\/wp-admin\/admin-ajax.php","uploadUrl":"https:\/\/ivc.tugraz.at\/wp-content\/uploads"},"nonces":{"floatingButtonsClickTracking":"21cc773bc5","atomicFormsSendForm":"a4d7a45532"},"swiperClass":"swiper","settings":{"page":[],"editorPreferences":[]},"kit":{"body_background_background":"classic","active_breakpoints":["viewport_mobile","viewport_tablet"],"global_image_lightbox":"yes","lightbox_enable_counter":"yes","lightbox_enable_fullscreen":"yes","lightbox_enable_zoom":"yes","lightbox_enable_share":"yes","lightbox_title_src":"title","lightbox_description_src":"description"},"post":{"id":20232,"title":"Semantic%20Drone%20Dataset%20%E2%80%93%20IVC","excerpt":"","featuredImage":"https:\/\/ivc.tugraz.at\/wp-content\/uploads\/fyler3.png"}};
+//# sourceURL=elementor-frontend-js-before
+</script>
+<script src="https://ivc.tugraz.at/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=4.0.2" id="elementor-frontend-js"></script>
+<script id="elementor-frontend-js-after">
+window.scope_array = [];
+								window.backend = 0;
+								jQuery.cachedScript = function( url, options ) {
+									// Allow user to set any option except for dataType, cache, and url.
+									options = jQuery.extend( options || {}, {
+										dataType: "script",
+										cache: true,
+										url: url
+									});
+									// Return the jqXHR object so we can chain callbacks.
+									return jQuery.ajax( options );
+								};
+							    jQuery( window ).on( "elementor/frontend/init", function() {
+									elementorFrontend.hooks.addAction( "frontend/element_ready/global", function( $scope, $ ){
+										if ( "undefined" == typeof $scope ) {
+												return;
+										}
+										if ( $scope.hasClass( "uael-particle-yes" ) ) {
+											window.scope_array.push( $scope );
+											$scope.find(".uael-particle-wrapper").addClass("js-is-enabled");
+										}else{
+											return;
+										}
+										if(elementorFrontend.isEditMode() && $scope.find(".uael-particle-wrapper").hasClass("js-is-enabled") && window.backend == 0 ){
+											var uael_url = uael_particles_script.uael_particles_url;
+
+											jQuery.cachedScript( uael_url );
+											window.backend = 1;
+										}else if(elementorFrontend.isEditMode()){
+											var uael_url = uael_particles_script.uael_particles_url;
+											jQuery.cachedScript( uael_url ).done(function(){
+												var flag = true;
+											});
+										}
+									});
+								});
+
+								// Added both `document` and `window` event listeners to address issues where some users faced problems with the `document` event not triggering as expected.
+								// Define cachedScript globally to avoid redefining it.
+
+								jQuery.cachedScript = function(url, options) {
+									options = jQuery.extend(options || {}, {
+										dataType: "script",
+										cache: true,
+										url: url
+									});
+									return jQuery.ajax(options); // Return the jqXHR object so we can chain callbacks
+								};
+
+								let uael_particle_loaded = false; //flag to prevent multiple script loads.
+
+								jQuery( document ).on( "ready elementor/popup/show", () => {
+										loadParticleScript();
+								});
+
+								jQuery( window ).one( "elementor/frontend/init", () => {
+								 	if (!uael_particle_loaded) {
+										loadParticleScript();
+									}
+								});
+								
+								function loadParticleScript(){
+								 	// Use jQuery to check for the presence of the element
+									if (jQuery(".uael-particle-yes").length < 1) {
+										return;
+									}
+									
+									uael_particle_loaded = true;
+									var uael_url = uael_particles_script.uael_particles_url;
+									// Call the cachedScript function
+									jQuery.cachedScript(uael_url);
+								}
+//# sourceURL=elementor-frontend-js-after
+</script>
+<script src="https://ivc.tugraz.at/wp-content/plugins/elementor-pro/assets/lib/smartmenus/jquery.smartmenus.min.js?ver=1.2.1" id="smartmenus-js"></script>
+<script src="https://ivc.tugraz.at/wp-content/plugins/elementor-pro/assets/js/webpack-pro.runtime.min.js?ver=4.0.2" id="elementor-pro-webpack-runtime-js"></script>
+<script src="https://ivc.tugraz.at/wp-includes/js/dist/hooks.min.js?ver=dd5603f07f9220ed27f1" id="wp-hooks-js"></script>
+<script src="https://ivc.tugraz.at/wp-includes/js/dist/i18n.min.js?ver=c26c3dc7bed366793375" id="wp-i18n-js"></script>
+<script id="wp-i18n-js-after">
+wp.i18n.setLocaleData( { 'text direction\u0004ltr': [ 'ltr' ] } );
+//# sourceURL=wp-i18n-js-after
+</script>
+<script id="elementor-pro-frontend-js-before">
+var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/ivc.tugraz.at\/wp-admin\/admin-ajax.php","nonce":"cd01464004","urls":{"assets":"https:\/\/ivc.tugraz.at\/wp-content\/plugins\/elementor-pro\/assets\/","rest":"https:\/\/ivc.tugraz.at\/wp-json\/"},"settings":{"lazy_load_background_images":true},"popup":{"hasPopUps":false},"shareButtonsNetworks":{"facebook":{"title":"Facebook","has_counter":true},"twitter":{"title":"Twitter"},"linkedin":{"title":"LinkedIn","has_counter":true},"pinterest":{"title":"Pinterest","has_counter":true},"reddit":{"title":"Reddit","has_counter":true},"vk":{"title":"VK","has_counter":true},"odnoklassniki":{"title":"OK","has_counter":true},"tumblr":{"title":"Tumblr"},"digg":{"title":"Digg"},"skype":{"title":"Skype"},"stumbleupon":{"title":"StumbleUpon","has_counter":true},"mix":{"title":"Mix"},"telegram":{"title":"Telegram"},"pocket":{"title":"Pocket","has_counter":true},"xing":{"title":"XING","has_counter":true},"whatsapp":{"title":"WhatsApp"},"email":{"title":"Email"},"print":{"title":"Print"},"x-twitter":{"title":"X"},"threads":{"title":"Threads"}},"facebook_sdk":{"lang":"en_US","app_id":""},"lottie":{"defaultAnimationUrl":"https:\/\/ivc.tugraz.at\/wp-content\/plugins\/elementor-pro\/modules\/lottie\/assets\/animations\/default.json"}};
+//# sourceURL=elementor-pro-frontend-js-before
+</script>
+<script src="https://ivc.tugraz.at/wp-content/plugins/elementor-pro/assets/js/frontend.min.js?ver=4.0.2" id="elementor-pro-frontend-js"></script>
+<script src="https://ivc.tugraz.at/wp-content/plugins/elementor-pro/assets/js/elements-handlers.min.js?ver=4.0.2" id="pro-elements-handlers-js"></script>
+
+</body>
+</html>
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1777481237 -->

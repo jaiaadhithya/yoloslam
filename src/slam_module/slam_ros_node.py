@@ -12,13 +12,23 @@ from slam_module.slam_wrapper import OrbSlamWrapper
 
 
 def _image_msg_to_rgb(msg: Image) -> np.ndarray:
-    arr = np.frombuffer(msg.data, dtype=np.uint8)
     if msg.height == 0 or msg.width == 0:
         return np.zeros((480, 640, 3), dtype=np.uint8)
-    channels = max(1, int(len(arr) / (msg.height * msg.width)))
-    img = arr.reshape((msg.height, msg.width, channels))
+    arr = np.frombuffer(msg.data, dtype=np.uint8)
+    step = int(msg.step) if msg.step else 0
+    if step > 0 and len(arr) >= step * msg.height:
+        row = arr[: step * msg.height].reshape((msg.height, step))
+        channels = max(1, step // msg.width)
+        img = row[:, : msg.width * channels].reshape((msg.height, msg.width, channels))
+    else:
+        channels = max(1, int(len(arr) / (msg.height * msg.width)))
+        img = arr.reshape((msg.height, msg.width, channels))
+
+    enc = (msg.encoding or "").lower()
     if channels == 1:
         return np.repeat(img, 3, axis=2)
+    if "bgr" in enc:
+        return img[:, :, :3][:, :, ::-1].copy()
     return img[:, :, :3].copy()
 
 

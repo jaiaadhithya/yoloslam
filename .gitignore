@@ -1,4 +1,5 @@
 .venv/
+datasets/.cache/
 build/
 install/
 log/
@@ -9,3 +10,7 @@ __pycache__/
 *.swp
 *.tmp
 .DS_Store
+
+# Local dataset archives too large for GitHub (>100MB file limit)
+datasets/semantic_drone_dataset.zip
+datasets/tum_rgbd/**/*.tgz

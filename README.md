@@ -48,8 +48,16 @@ ros2 launch yolo_slam_landing full_pipeline.launch.py
 # Open mixed-terrain world
 ros2 launch yolo_slam_landing safe_world.launch.py
 
+# Realistic world + PX4 x500 depth camera + YOLO/SLAM/fusion/controller
+# (requires PX4-Autopilot checkout and Gazebo Sim setup)
+export PX4_AUTOPILOT_PATH=~/PX4-Autopilot
+ros2 launch yolo_slam_landing px4_baylands_autonomy.launch.py
+
 # ROS topic runtime (camera->YOLO->SLAM->fusion->controller)
 ros2 launch yolo_slam_landing full_px4_runtime.launch.py
+
+# Runtime with explicit Gazebo camera bridge (x500_depth)
+ros2 launch yolo_slam_landing full_runtime_with_bridge.launch.py
 
 # YOLO-only ablation
 ros2 launch yolo_slam_landing yolo_only.launch.py
@@ -82,7 +90,10 @@ make pdf
 ## Notes
 
 - This scaffold includes lightweight fallback logic where ROS/PX4/ORB-SLAM3 are not available so local unit-level testing is still possible.
+- Running `gazebo worlds/safe_landing_world.sdf` only opens a static demo world; it does not spawn PX4 SITL or drone autonomy.
+- For a realistic upstream world + drone simulation, use `px4_baylands_autonomy.launch.py` (Baylands + `gz_x500_depth`).
 - Replace placeholder SDF assets and ORB-SLAM3 wrapper bindings with your final simulation-specific implementation.
 - Detailed environment and execution steps: `docs/SETUP_RUNBOOK.md`.
 - Framework alignment checklist: `docs/FRAMEWORK_UPDATE_STATUS.md`.
 - Realistic third-party stack integration: `docs/THIRD_PARTY_RUNBOOK.md`.
+- Reference baseline integration: `docs/REFERENCE_STACK_INTEGRATION.md`.

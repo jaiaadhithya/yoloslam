@@ -57,9 +57,39 @@
         </visual>
       </link>
     </model>
-    <include><uri>model://ambulance</uri><name>vehicle_1</name><pose>20 30 0.1 0 0 0</pose></include>
-    <include><uri>model://pioneer2dx</uri><name>vehicle_2</name><pose>26 30 0.1 0 0 0</pose></include>
-    <include><uri>model://pioneer2dx</uri><name>vehicle_3</name><pose>32 30 0.1 0 0 1.57</pose></include>
+    <model name="vehicle_1">
+      <pose>20 30 0.7 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry><box><size>4.2 2.0 1.4</size></box></geometry>
+          <material><ambient>0.8 0.1 0.1 1</ambient><diffuse>0.8 0.1 0.1 1</diffuse></material>
+        </visual>
+        <collision name="collision"><geometry><box><size>4.2 2.0 1.4</size></box></geometry></collision>
+      </link>
+    </model>
+    <model name="vehicle_2">
+      <pose>26 30 0.7 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry><box><size>4.2 2.0 1.4</size></box></geometry>
+          <material><ambient>0.1 0.1 0.8 1</ambient><diffuse>0.1 0.1 0.8 1</diffuse></material>
+        </visual>
+        <collision name="collision"><geometry><box><size>4.2 2.0 1.4</size></box></geometry></collision>
+      </link>
+    </model>
+    <model name="vehicle_3">
+      <pose>32 30 0.7 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual">
+          <geometry><box><size>4.2 2.0 1.4</size></box></geometry>
+          <material><ambient>0.8 0.8 0.1 1</ambient><diffuse>0.8 0.8 0.1 1</diffuse></material>
+        </visual>
+        <collision name="collision"><geometry><box><size>4.2 2.0 1.4</size></box></geometry></collision>
+      </link>
+    </model>
 
     <!-- Center: Trees -->
     <include><uri>model://pine_tree</uri><name>tree_1</name><pose>-4 2 0 0 0 0</pose></include>
@@ -80,8 +110,22 @@
     </model>
 
     <!-- SW: Buildings -->
-    <include><uri>model://house_1</uri><name>building_flat_roof</name><pose>-30 -25 0 0 0 0</pose></include>
-    <include><uri>model://house_2</uri><name>building_sloped_roof</name><pose>-20 -25 0 0 0 0</pose></include>
+    <model name="building_flat_roof">
+      <pose>-30 -25 4 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual"><geometry><box><size>10 8 8</size></box></geometry></visual>
+        <collision name="collision"><geometry><box><size>10 8 8</size></box></geometry></collision>
+      </link>
+    </model>
+    <model name="building_sloped_roof">
+      <pose>-20 -25 3 0 0 0.5</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual"><geometry><box><size>8 6 6</size></box></geometry></visual>
+        <collision name="collision"><geometry><box><size>8 6 6</size></box></geometry></collision>
+      </link>
+    </model>
 
     <!-- East debris -->
     <model name="debris_1"><pose>42 0 0.5 0 0 0</pose><static>true</static><link name="l"><visual name="v"><geometry><box><size>1.2 1.1 1</size></box></geometry></visual></link></model>
@@ -108,8 +152,26 @@
         <visual name="visual"><geometry><box><size>70 4 0.02</size></box></geometry></visual>
       </link>
     </model>
-    <include><uri>model://person_standing</uri><name>pedestrian_1</name><pose>-6 12 0 0 0 0</pose></include>
-    <include><uri>model://person_standing</uri><name>pedestrian_2</name><pose>3 12 0 0 0 0</pose></include>
-    <include><uri>model://person_standing</uri><name>pedestrian_3</name><pose>10 12 0 0 0 0</pose></include>
+    <model name="pedestrian_1">
+      <pose>-6 12 0.9 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual"><geometry><box><size>0.6 0.6 1.8</size></box></geometry></visual>
+      </link>
+    </model>
+    <model name="pedestrian_2">
+      <pose>3 12 0.9 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual"><geometry><box><size>0.6 0.6 1.8</size></box></geometry></visual>
+      </link>
+    </model>
+    <model name="pedestrian_3">
+      <pose>10 12 0.9 0 0 0</pose>
+      <static>true</static>
+      <link name="link">
+        <visual name="visual"><geometry><box><size>0.6 0.6 1.8</size></box></geometry></visual>
+      </link>
+    </model>
   </world>
 </sdf>

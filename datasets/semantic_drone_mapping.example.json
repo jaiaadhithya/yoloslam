@@ -1,0 +1,13 @@
+{
+  "paved-area": { "target": "flat_ground", "color_rgb": [192, 192, 192] },
+  "grass": { "target": "grass_field", "color_rgb": [0, 255, 0] },
+  "tree": { "target": "tree_canopy", "color_rgb": [0, 128, 0] },
+  "person": { "target": "person", "color_rgb": [255, 0, 0] },
+  "car": { "target": "vehicle", "color_rgb": [0, 0, 255] },
+  "water": { "target": "water", "color_rgb": [0, 255, 255] },
+  "roof": { "target": "rooftop_flat", "color_rgb": [255, 0, 255] },
+  "wall": { "target": "building_structure", "color_rgb": [128, 128, 128] },
+  "fence": { "target": "fence_pole", "color_rgb": [255, 255, 0] },
+  "obstacle": { "target": "debris_clutter", "color_rgb": [128, 64, 0] },
+  "gravel": { "target": "road_surface", "color_rgb": [128, 128, 0] }
+}

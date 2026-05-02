@@ -1,0 +1,39 @@
+{
+  "ok": true,
+  "source": "VisDrone2019-DET-val (ultralytics/assets mirror)",
+  "selection": "full val scan; shuffle(seed=42); take up to cap from passing set",
+  "n_val_images_total": 548,
+  "keep_if_any_class": [
+    "bus",
+    "car",
+    "person",
+    "truck"
+  ],
+  "filter_confidence": 0.22,
+  "n_candidates_scanned": 548,
+  "n_passing_yolo_filter": 527,
+  "n_rejected_no_target_class": 21,
+  "n_kept": 20,
+  "files": [
+    "0000295_00200_d_0000022.jpg",
+    "0000316_00001_d_0000519.jpg",
+    "0000103_03738_d_0000032.jpg",
+    "0000356_02353_d_0000641.jpg",
+    "0000022_00000_d_0000004.jpg",
+    "0000360_02353_d_0000725.jpg",
+    "0000327_01401_d_0000718.jpg",
+    "0000153_00001_d_0000001.jpg",
+    "0000291_02001_d_0000878.jpg",
+    "0000086_01443_d_0000004.jpg",
+    "0000312_00001_d_0000414.jpg",
+    "0000330_00601_d_0000803.jpg",
+    "0000289_06201_d_0000842.jpg",
+    "0000327_01801_d_0000720.jpg",
+    "0000335_01765_d_0000052.jpg",
+    "0000271_05001_d_0000397.jpg",
+    "0000356_01765_d_0000638.jpg",
+    "0000242_00843_d_0000004.jpg",
+    "0000360_00001_d_0000713.jpg",
+    "0000249_03900_d_0000011.jpg"
+  ]
+}

@@ -1,7 +1,8 @@
 from dataclasses import dataclass
-from typing import Tuple
 
 import numpy as np
+
+from slam_module.synthetic_trajectory import SyntheticUavTrajectory
 
 
 @dataclass
@@ -9,21 +10,37 @@ class SlamPose:
     position: np.ndarray
     quaternion_xyzw: np.ndarray
     tracking_state: str
+    velocity: np.ndarray | None = None
+    timestamp: float | None = None
 
 
 class OrbSlamWrapper:
-    """Placeholder wrapper; replace with ORB-SLAM3 Python/C++ binding."""
+    """Placeholder wrapper: realistic synthetic UAV trajectory until ORB-SLAM3 is integrated."""
 
-    def __init__(self) -> None:
+    def __init__(
+        self,
+        *,
+        dt: float = 0.05,
+        traj_seed: int = 42,
+        enable_glitch: bool = True,
+    ) -> None:
         self.initialized = True
-        self._last_pos = np.zeros(3, dtype=float)
+        self._dt = float(dt)
+        self._traj = SyntheticUavTrajectory(dt=dt, seed=traj_seed, enable_glitch=enable_glitch)
+        self._step = 0
+
+    def reset(self) -> None:
+        self._step = 0
 
     def track(self, frame: np.ndarray, timestamp: float) -> SlamPose:
-        _ = frame, timestamp
-        # Lightweight synthetic pose for scaffold execution.
-        self._last_pos = self._last_pos + np.array([0.01, 0.0, 0.0], dtype=float)
+        _ = frame
+        k = self._step
+        self._step += 1
+        pos, vel, quat = self._traj.state_at_step(k)
         return SlamPose(
-            position=self._last_pos.copy(),
-            quaternion_xyzw=np.array([0.0, 0.0, 0.0, 1.0], dtype=float),
+            position=pos,
+            quaternion_xyzw=quat,
             tracking_state="OK",
+            velocity=vel.copy(),
+            timestamp=float(timestamp),
         )

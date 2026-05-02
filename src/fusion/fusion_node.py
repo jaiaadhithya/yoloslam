@@ -49,8 +49,7 @@ class FusionNode:
             )
 
         for det in detections:
-            wx, wy, _ = self._project_detection(det, slam_pose, nominal_depth_m)
-            self.grid.integrate(wx, wy, det["confidence"], det["is_safe"])
+            self._fuse_single_detection(det, slam_pose, nominal_depth_m)
 
         zone = select_zone_from_grid(
             safety_map=self.grid.safety_map(),
@@ -93,15 +92,69 @@ class FusionNode:
             return False
         return not self.grid.zone_is_contaminated(self.selected_zone_xy, radius_m=2.0)
 
-    def _project_detection(self, det: Dict, pose: Dict, nominal_depth_m: float) -> np.ndarray:
-        px = det["x_center"]
-        py = det["y_center"]
-        # A lightweight scaffold projection. Replace with depth/stereo when available.
+    def _fuse_single_detection(self, det: Dict, pose: Dict, nominal_depth_m: float) -> None:
+        """Integrate one enriched detection into the grid (supports safety_label semantics)."""
+        conf = float(det.get("confidence", 0.5))
+        label = det.get("safety_label")
+
+        if label == "neutral":
+            return
+
+        if label == "unsafe":
+            xmin, xmax, ymin, ymax = self._bbox_world_bounds(det, pose, nominal_depth_m)
+            delta = float(det.get("fusion_unsafe_delta", max(0.05, conf)))
+            self.grid.integrate_unsafe_footprint(xmin, xmax, ymin, ymax, delta)
+            return
+
+        if label == "positive_safe":
+            wx, wy, _ = self._project_detection(det, pose, nominal_depth_m)
+            sw = float(det.get("safety_weight", 0.35))
+            delta = max(0.05, conf * max(0.05, sw))
+            self.grid.integrate(float(wx), float(wy), delta, True)
+            return
+
+        if label == "unknown":
+            wx, wy, _ = self._project_detection(det, pose, nominal_depth_m)
+            delta = float(det.get("fusion_unsafe_delta", max(0.05, conf * 0.25)))
+            self.grid.integrate(float(wx), float(wy), delta, False)
+            return
+
+        wx, wy, _ = self._project_detection(det, pose, nominal_depth_m)
+        self.grid.integrate(float(wx), float(wy), conf, bool(det.get("is_safe", False)))
+
+    def _project_xy(self, px: float, py: float, pose: Dict, nominal_depth_m: float) -> tuple[float, float]:
         depth = nominal_depth_m
         xc = (px - self.cx) * depth / self.fx
         yc = (py - self.cy) * depth / self.fy
-        zc = depth
-        return np.array([pose["x"] + xc, pose["y"] + yc, pose["z"] + zc], dtype=float)
+        return float(pose["x"] + xc), float(pose["y"] + yc)
+
+    def _bbox_world_bounds(self, det: Dict, pose: Dict, nominal_depth_m: float) -> tuple[float, float, float, float]:
+        hw = float(det["width"]) / 2.0
+        hh = float(det["height"]) / 2.0
+        cx, cy = float(det["x_center"]), float(det["y_center"])
+        corners = [
+            (cx - hw, cy - hh),
+            (cx + hw, cy - hh),
+            (cx + hw, cy + hh),
+            (cx - hw, cy + hh),
+        ]
+        wxs: list[float] = []
+        wys: list[float] = []
+        for px, py in corners:
+            wx, wy = self._project_xy(px, py, pose, nominal_depth_m)
+            wxs.append(wx)
+            wys.append(wy)
+        if not wxs:
+            wx, wy = self._project_xy(cx, cy, pose, nominal_depth_m)
+            return wx, wx, wy, wy
+        return min(wxs), max(wxs), min(wys), max(wys)
+
+    def _project_detection(self, det: Dict, pose: Dict, nominal_depth_m: float) -> np.ndarray:
+        px = float(det["x_center"])
+        py = float(det["y_center"])
+        wx, wy = self._project_xy(px, py, pose, nominal_depth_m)
+        zc = nominal_depth_m
+        return np.array([wx, wy, float(pose["z"]) + zc], dtype=float)
 
 
 if __name__ == "__main__":
@@ -115,6 +168,9 @@ if __name__ == "__main__":
             "height": 120.0,
             "confidence": 0.9,
             "is_safe": True,
+            "safety_label": "positive_safe",
+            "safety_weight": 0.35,
+            "fusion_unsafe_delta": 0.0,
         }
     ]
     tick = 0
