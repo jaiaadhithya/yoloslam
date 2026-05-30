@@ -1,0 +1,11 @@
+{
+  "backend": "yoloslam_rkf_rgbd",
+  "selection": {
+    "selected_backend": "yoloslam_rkf_rgbd",
+    "selected_github": "yoloslam (this repository)",
+    "ate_rmse_m": 0.05727701087401405,
+    "rpe_rmse_m": 0.04085656897495042,
+    "reason": "Lowest ATE RMSE on TUM freiburg1_xyz after timestamp association."
+  },
+  "integrated_at": "2026-05-28T21:14:24Z"
+}

@@ -1,0 +1,74 @@
+{
+  "slam_benchmark": {
+    "dataset": "TUM RGB-D freiburg1_xyz",
+    "max_frames": 792,
+    "best_backend": "yoloslam_rkf_rgbd",
+    "results": [
+      {
+        "backend": "yoloslam_rkf_rgbd",
+        "ate_rmse_m": 0.05727701087401405,
+        "rpe_rmse_m": 0.04085656897495042,
+        "status": "ok"
+      },
+      {
+        "backend": "keyframe_pose_graph_rgbd",
+        "ate_rmse_m": 0.06189606297320196,
+        "rpe_rmse_m": 0.06298856356281608,
+        "status": "ok"
+      },
+      {
+        "backend": "opencv_orb_rgbd",
+        "ate_rmse_m": 0.06146098206203924,
+        "rpe_rmse_m": 0.04677609644889875,
+        "status": "ok"
+      },
+      {
+        "backend": "open3d_rgbd",
+        "ate_rmse_m": 0.15101432151133234,
+        "rpe_rmse_m": 0.36485395079278676,
+        "status": "ok"
+      }
+    ]
+  },
+  "landing_pipeline": {
+    "mean_convergence_time": 17.322222222222223,
+    "std_convergence_time": 1.2341838908943878,
+    "mean_time_to_land": 35.406666666666666,
+    "std_time_to_land": 2.2984439180550913,
+    "mean_time_to_land_with_abort": null,
+    "std_time_to_land_with_abort": null,
+    "mean_zone_accuracy": 1.0,
+    "mean_abort_latency": 0.0,
+    "std_abort_latency": 0.0,
+    "seeds": [
+      42,
+      123,
+      256,
+      512,
+      1024
+    ],
+    "note": "zone_accuracy: fraction of no_abort trials where fusion safety_map value at landing (x,y) exceeds zone_safety_threshold. offline_fusion.GROUND_TRUTH_SAFE_ZONES apply only to offline fusion sim."
+  },
+  "pybullet_slam_sanity": {
+    "backend": "keyframe_pose_graph_rgbd",
+    "steps": 180,
+    "raw_mean_xy_error_m": 4.223333333333333,
+    "raw_rmse_xy_error_m": 4.869944862415072,
+    "aligned_mean_xy_error_m": 2.0999999999999996,
+    "aligned_rmse_xy_error_m": 2.4248337094569012,
+    "max_aligned_xy_error_m": 4.176666666666667,
+    "median_aligned_xy_error_m": 2.0999999999999996,
+    "plot": "/mnt/c/Users/jaiaa/OneDrive/Desktop/stuff/study_project/yoloslam/compre/pybullet_slam_eval/trajectory_xy.png"
+  },
+  "figure_paths": {
+    "ate_rmse_bar.png": "paper\\figures\\slam_ate_bar.png",
+    "trajectory_eval.png": "paper\\figures\\slam_trajectory.png",
+    "grid_evolution.png": "paper\\figures\\grid_evolution.png",
+    "decision_timeline.png": "paper\\figures\\decision_timeline.png",
+    "grid_t05.png": "paper\\figures\\grid_t05.png",
+    "grid_descent.png": "paper\\figures\\grid_descent.png",
+    "pov_02.png": "paper\\figures\\pov_survey.png",
+    "pov_04.png": "paper\\figures\\pov_landed.png",
+    "abort_chase_030.png": "paper\\figures\\abort_frame.png"
+  }
+}

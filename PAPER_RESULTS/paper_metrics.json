@@ -1,0 +1,310 @@
+{
+  "trials": [
+    {
+      "seed": 42,
+      "grid_convergence_time_s": 19.066666666666666,
+      "time_to_land_s": 37.0,
+      "time_to_land_with_abort_s": null,
+      "zone_accuracy": true,
+      "abort_detection_latency_s": 0.0,
+      "states_visited": [
+        "SURVEY",
+        "EVALUATE",
+        "SEARCH",
+        "APPROACH",
+        "ALIGN",
+        "DESCEND",
+        "LANDED"
+      ]
+    },
+    {
+      "seed": 123,
+      "grid_convergence_time_s": 16.4,
+      "time_to_land_s": 32.86666666666667,
+      "time_to_land_with_abort_s": null,
+      "zone_accuracy": true,
+      "abort_detection_latency_s": 0.0,
+      "states_visited": [
+        "SURVEY",
+        "EVALUATE",
+        "SEARCH",
+        "APPROACH",
+        "ALIGN",
+        "DESCEND",
+        "LANDED"
+      ]
+    },
+    {
+      "seed": 256,
+      "grid_convergence_time_s": 16.5,
+      "time_to_land_s": 34.46666666666667,
+      "time_to_land_with_abort_s": null,
+      "zone_accuracy": true,
+      "abort_detection_latency_s": 0.0,
+      "states_visited": [
+        "SURVEY",
+        "EVALUATE",
+        "SEARCH",
+        "APPROACH",
+        "ALIGN",
+        "DESCEND",
+        "LANDED"
+      ]
+    },
+    {
+      "seed": 512,
+      "grid_convergence_time_s": null,
+      "time_to_land_s": 33.63333333333333,
+      "time_to_land_with_abort_s": null,
+      "zone_accuracy": true,
+      "abort_detection_latency_s": 0.0,
+      "states_visited": [
+        "SURVEY",
+        "EVALUATE",
+        "SEARCH",
+        "APPROACH",
+        "ALIGN",
+        "DESCEND",
+        "LANDED"
+      ]
+    },
+    {
+      "seed": 1024,
+      "grid_convergence_time_s": null,
+      "time_to_land_s": 39.06666666666666,
+      "time_to_land_with_abort_s": null,
+      "zone_accuracy": true,
+      "abort_detection_latency_s": 0.0,
+      "states_visited": [
+        "SURVEY",
+        "EVALUATE",
+        "SEARCH",
+        "APPROACH",
+        "ALIGN",
+        "DESCEND",
+        "LANDED"
+      ]
+    }
+  ],
+  "summary": {
+    "mean_convergence_time": 17.322222222222223,
+    "std_convergence_time": 1.2341838908943878,
+    "mean_time_to_land": 35.406666666666666,
+    "std_time_to_land": 2.2984439180550913,
+    "mean_time_to_land_with_abort": null,
+    "std_time_to_land_with_abort": null,
+    "mean_zone_accuracy": 1.0,
+    "mean_abort_latency": 0.0,
+    "std_abort_latency": 0.0,
+    "seeds": [
+      42,
+      123,
+      256,
+      512,
+      1024
+    ],
+    "note": "zone_accuracy: fraction of no_abort trials where fusion safety_map value at landing (x,y) exceeds zone_safety_threshold. offline_fusion.GROUND_TRUTH_SAFE_ZONES apply only to offline fusion sim."
+  },
+  "trials_raw": [
+    {
+      "seed": 42,
+      "scenario": "no_abort",
+      "grid_convergence_time_s": 19.066666666666666,
+      "time_to_land_s": 37.0,
+      "zone_accuracy": true,
+      "abort_detection_latency_s": null,
+      "states_visited": [
+        "SURVEY",
+        "EVALUATE",
+        "SEARCH",
+        "APPROACH",
+        "ALIGN",
+        "DESCEND",
+        "LANDED"
+      ],
+      "landed": true,
+      "inject_time_s": null,
+      "abort_time_s": null
+    },
+    {
+      "seed": 42,
+      "scenario": "with_abort",
+      "grid_convergence_time_s": 19.066666666666666,
+      "time_to_land_s": null,
+      "zone_accuracy": null,
+      "abort_detection_latency_s": 0.0,
+      "states_visited": [
+        "SURVEY",
+        "EVALUATE",
+        "SEARCH",
+        "APPROACH",
+        "ALIGN",
+        "DESCEND",
+        "ABORT"
+      ],
+      "landed": false,
+      "inject_time_s": 37.0,
+      "abort_time_s": 37.0
+    },
+    {
+      "seed": 123,
+      "scenario": "no_abort",
+      "grid_convergence_time_s": 16.4,
+      "time_to_land_s": 32.86666666666667,
+      "zone_accuracy": true,
+      "abort_detection_latency_s": null,
+      "states_visited": [
+        "SURVEY",
+        "EVALUATE",
+        "SEARCH",
+        "APPROACH",
+        "ALIGN",
+        "DESCEND",
+        "LANDED"
+      ],
+      "landed": true,
+      "inject_time_s": null,
+      "abort_time_s": null
+    },
+    {
+      "seed": 123,
+      "scenario": "with_abort",
+      "grid_convergence_time_s": 16.4,
+      "time_to_land_s": null,
+      "zone_accuracy": null,
+      "abort_detection_latency_s": 0.0,
+      "states_visited": [
+        "SURVEY",
+        "EVALUATE",
+        "SEARCH",
+        "APPROACH",
+        "ALIGN",
+        "DESCEND",
+        "ABORT"
+      ],
+      "landed": false,
+      "inject_time_s": 32.86666666666667,
+      "abort_time_s": 32.86666666666667
+    },
+    {
+      "seed": 256,
+      "scenario": "no_abort",
+      "grid_convergence_time_s": 16.5,
+      "time_to_land_s": 34.46666666666667,
+      "zone_accuracy": true,
+      "abort_detection_latency_s": null,
+      "states_visited": [
+        "SURVEY",
+        "EVALUATE",
+        "SEARCH",
+        "APPROACH",
+        "ALIGN",
+        "DESCEND",
+        "LANDED"
+      ],
+      "landed": true,
+      "inject_time_s": null,
+      "abort_time_s": null
+    },
+    {
+      "seed": 256,
+      "scenario": "with_abort",
+      "grid_convergence_time_s": 16.5,
+      "time_to_land_s": null,
+      "zone_accuracy": null,
+      "abort_detection_latency_s": 0.0,
+      "states_visited": [
+        "SURVEY",
+        "EVALUATE",
+        "SEARCH",
+        "APPROACH",
+        "ALIGN",
+        "DESCEND",
+        "ABORT"
+      ],
+      "landed": false,
+      "inject_time_s": 34.46666666666667,
+      "abort_time_s": 34.46666666666667
+    },
+    {
+      "seed": 512,
+      "scenario": "no_abort",
+      "grid_convergence_time_s": null,
+      "time_to_land_s": 33.63333333333333,
+      "zone_accuracy": true,
+      "abort_detection_latency_s": null,
+      "states_visited": [
+        "SURVEY",
+        "EVALUATE",
+        "SEARCH",
+        "APPROACH",
+        "ALIGN",
+        "DESCEND",
+        "LANDED"
+      ],
+      "landed": true,
+      "inject_time_s": null,
+      "abort_time_s": null
+    },
+    {
+      "seed": 512,
+      "scenario": "with_abort",
+      "grid_convergence_time_s": null,
+      "time_to_land_s": null,
+      "zone_accuracy": null,
+      "abort_detection_latency_s": 0.0,
+      "states_visited": [
+        "SURVEY",
+        "EVALUATE",
+        "SEARCH",
+        "APPROACH",
+        "ALIGN",
+        "DESCEND",
+        "ABORT"
+      ],
+      "landed": false,
+      "inject_time_s": 33.63333333333333,
+      "abort_time_s": 33.63333333333333
+    },
+    {
+      "seed": 1024,
+      "scenario": "no_abort",
+      "grid_convergence_time_s": null,
+      "time_to_land_s": 39.06666666666666,
+      "zone_accuracy": true,
+      "abort_detection_latency_s": null,
+      "states_visited": [
+        "SURVEY",
+        "EVALUATE",
+        "SEARCH",
+        "APPROACH",
+        "ALIGN",
+        "DESCEND",
+        "LANDED"
+      ],
+      "landed": true,
+      "inject_time_s": null,
+      "abort_time_s": null
+    },
+    {
+      "seed": 1024,
+      "scenario": "with_abort",
+      "grid_convergence_time_s": null,
+      "time_to_land_s": null,
+      "zone_accuracy": null,
+      "abort_detection_latency_s": 0.0,
+      "states_visited": [
+        "SURVEY",
+        "EVALUATE",
+        "SEARCH",
+        "APPROACH",
+        "ALIGN",
+        "DESCEND",
+        "ABORT"
+      ],
+      "landed": false,
+      "inject_time_s": 39.06666666666666,
+      "abort_time_s": 39.06666666666666
+    }
+  ]
+}

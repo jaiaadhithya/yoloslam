@@ -1,4 +1,5 @@
 .venv/
+node_modules/
 datasets/.cache/
 build/
 install/
@@ -11,6 +12,13 @@ __pycache__/
 *.tmp
 .DS_Store
 
+# PyBullet demo downloads (textures / OBJ); safe to delete to re-fetch.
+assets/pybullet_demo/cache/
+
 # Local dataset archives too large for GitHub (>100MB file limit)
 datasets/semantic_drone_dataset.zip
-datasets/tum_rgbd/**/*.tgz
+# Vendor SLAM repos (clone via scripts/install_*_wsl.sh — not committed)
+third_party/DROID-SLAM/
+third_party/ORB_SLAM2/
+third_party/ORB_SLAM3/
+third_party/Pangolin/

@@ -9,3 +9,4 @@ transforms3d==0.4.1
 filterpy==1.4.5
 PyYAML==6.0.1
 pymavlink>=2.4.40
+pybullet>=3.2.6

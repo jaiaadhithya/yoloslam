@@ -30,14 +30,14 @@ def run_slam_smoke(
     dt: float = DT,
     enable_glitch: bool = True,
 ) -> dict[str, Any]:
-    from slam_module.slam_wrapper import OrbSlamWrapper
+    from slam_module.slam_wrapper import SlamWrapper
     from slam_module.synthetic_trajectory import precompute_trajectory
 
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
     rng = np.random.default_rng(frame_seed)
-    slam = OrbSlamWrapper(dt=dt, traj_seed=frame_seed, enable_glitch=enable_glitch)
+    slam = SlamWrapper(use_synthetic=True, dt=dt, traj_seed=frame_seed, enable_glitch=enable_glitch)
 
     positions: list[np.ndarray] = []
     t0_wall = time.perf_counter()

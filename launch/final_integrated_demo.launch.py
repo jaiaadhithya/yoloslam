@@ -48,6 +48,16 @@ def generate_launch_description() -> LaunchDescription:
         "-r",
         "/world/baylands/model/x500_depth_0/link/camera_link/sensor/IMX214/image:=/camera",
     ]
+    bridge_baylands_depth = [
+        "ros2",
+        "run",
+        "ros_gz_bridge",
+        "parameter_bridge",
+        "/depth_camera@sensor_msgs/msg/Image[gz.msgs.Image",
+        "--ros-args",
+        "-r",
+        "/depth_camera:=/camera/depth",
+    ]
     bridge_default = [
         "ros2",
         "run",
@@ -58,6 +68,16 @@ def generate_launch_description() -> LaunchDescription:
         "-r",
         "/world/default/model/x500_depth_0/link/camera_link/sensor/IMX214/image:=/camera",
     ]
+    bridge_default_depth = [
+        "ros2",
+        "run",
+        "ros_gz_bridge",
+        "parameter_bridge",
+        "/depth_camera@sensor_msgs/msg/Image[gz.msgs.Image",
+        "--ros-args",
+        "-r",
+        "/depth_camera:=/camera/depth",
+    ]
 
     def py_mod(mod: str, *ros_args: str) -> list:
         return ["python3", "-m", mod, *ros_args]
@@ -65,7 +85,9 @@ def generate_launch_description() -> LaunchDescription:
     return LaunchDescription(
         [
             ExecuteProcess(cmd=bridge_baylands, output="screen", env=env),
+            ExecuteProcess(cmd=bridge_baylands_depth, output="screen", env=env),
             ExecuteProcess(cmd=bridge_default, output="screen", env=env),
+            ExecuteProcess(cmd=bridge_default_depth, output="screen", env=env),
             ExecuteProcess(
                 cmd=py_mod("yolo_detector.yolo_ros_node", "--ros-args", "-p", "inference_stride:=2"),
                 cwd=str(repo),

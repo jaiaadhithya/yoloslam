@@ -1,0 +1,25 @@
+{
+  "backend_key": "keyframe_pose_graph_rgbd",
+  "backend": {
+    "name": "keyframe_pose_graph_rgbd",
+    "github": "https://github.com/opencv/opencv",
+    "description": "Keyframe RGB-D SLAM with ORB map points and pose-graph chaining.",
+    "sensor_modes": [
+      "rgbd"
+    ]
+  },
+  "status": "ok",
+  "runtime_s": 69.15162858000258,
+  "num_poses": 792,
+  "estimated_trajectory": "/mnt/c/Users/jaiaa/OneDrive/Desktop/stuff/study_project/yoloslam/compre/slam_benchmark/keyframe_pose_graph_rgbd/estimated.tum",
+  "metrics": {
+    "ate_rmse_m": 0.06189606297320196,
+    "ate_mean_m": 0.05963818791116016,
+    "ate_median_m": 0.057177565209344756,
+    "ate_std_m": 0.016565299703166603,
+    "rpe_rmse_m": 0.06298856356281608,
+    "rpe_mean_m": 0.05465869000877118,
+    "num_synced_poses": 790,
+    "plot": "/mnt/c/Users/jaiaa/OneDrive/Desktop/stuff/study_project/yoloslam/compre/slam_benchmark/keyframe_pose_graph_rgbd/trajectory_eval.png"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "backend_key": "opencv_orb_rgbd",
+  "backend": {
+    "name": "opencv_orb_rgbd",
+    "github": "https://github.com/opencv/opencv",
+    "description": "ORB feature tracking with RGB-D PnP and local keyframe map.",
+    "sensor_modes": [
+      "rgbd"
+    ]
+  },
+  "status": "ok",
+  "runtime_s": 49.6647225179986,
+  "num_poses": 792,
+  "estimated_trajectory": "/mnt/c/Users/jaiaa/OneDrive/Desktop/stuff/study_project/yoloslam/compre/slam_benchmark/opencv_orb_rgbd/estimated.tum",
+  "metrics": {
+    "ate_rmse_m": 0.06146098206203924,
+    "ate_mean_m": 0.05890832310012048,
+    "ate_median_m": 0.05943995598619512,
+    "ate_std_m": 0.017528884321659513,
+    "rpe_rmse_m": 0.04677609644889875,
+    "rpe_mean_m": 0.04183316360841565,
+    "num_synced_poses": 790,
+    "plot": "/mnt/c/Users/jaiaa/OneDrive/Desktop/stuff/study_project/yoloslam/compre/slam_benchmark/opencv_orb_rgbd/trajectory_eval.png"
+  }
+}

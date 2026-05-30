@@ -1,0 +1,11 @@
+{
+  "backend": "keyframe_pose_graph_rgbd",
+  "steps": 180,
+  "raw_mean_xy_error_m": 4.223333333333333,
+  "raw_rmse_xy_error_m": 4.869944862415072,
+  "aligned_mean_xy_error_m": 2.0999999999999996,
+  "aligned_rmse_xy_error_m": 2.4248337094569012,
+  "max_aligned_xy_error_m": 4.176666666666667,
+  "median_aligned_xy_error_m": 2.0999999999999996,
+  "plot": "/mnt/c/Users/jaiaa/OneDrive/Desktop/stuff/study_project/yoloslam/compre/pybullet_slam_eval/trajectory_xy.png"
+}

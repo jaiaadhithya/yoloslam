@@ -1,0 +1,25 @@
+{
+  "backend_key": "open3d_rgbd",
+  "backend": {
+    "name": "open3d_rgbd",
+    "github": "https://github.com/isl-org/Open3D",
+    "description": "Open3D multi-scale RGB-D visual odometry with robust kernels.",
+    "sensor_modes": [
+      "rgbd"
+    ]
+  },
+  "status": "ok",
+  "runtime_s": 609.1771577260006,
+  "num_poses": 792,
+  "estimated_trajectory": "/mnt/c/Users/jaiaa/OneDrive/Desktop/stuff/study_project/yoloslam/compre/slam_benchmark/open3d_rgbd/estimated.tum",
+  "metrics": {
+    "ate_rmse_m": 0.15101432151133234,
+    "ate_mean_m": 0.12627157354562213,
+    "ate_median_m": 0.10842394236300902,
+    "ate_std_m": 0.08283003691802024,
+    "rpe_rmse_m": 0.36485395079278676,
+    "rpe_mean_m": 0.3628911463202196,
+    "num_synced_poses": 790,
+    "plot": "/mnt/c/Users/jaiaa/OneDrive/Desktop/stuff/study_project/yoloslam/compre/slam_benchmark/open3d_rgbd/trajectory_eval.png"
+  }
+}

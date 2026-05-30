@@ -22,13 +22,26 @@ class LandingZone:
 
 
 class FusionNode:
-    def __init__(self, fx: float = 320.0, fy: float = 320.0, cx: float = 320.0, cy: float = 240.0):
+    def __init__(
+        self,
+        fx: float = 320.0,
+        fy: float = 320.0,
+        cx: float = 320.0,
+        cy: float = 240.0,
+        world_size_m: float = 100.0,
+        *,
+        zone_safety_threshold: float = 1.0,
+        zone_min_size_m: float = 3.0,
+    ):
         self.fx = fx
         self.fy = fy
         self.cx = cx
         self.cy = cy
-        self.grid = SafetyGrid(world_size_m=100.0, resolution_m=1.0)
-        self.zone_selector_config = ZoneSelectionConfig()
+        self.grid = SafetyGrid(world_size_m=float(world_size_m), resolution_m=1.0)
+        self.zone_selector_config = ZoneSelectionConfig(
+            safety_threshold=float(zone_safety_threshold),
+            min_zone_size_m=float(zone_min_size_m),
+        )
         self.selected_zone_xy: tuple[float, float] | None = None
 
     def fuse(self, detections: List[Dict], slam_pose: Dict, nominal_depth_m: float = 10.0) -> Dict:

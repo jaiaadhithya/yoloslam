@@ -1,0 +1,126 @@
+# Offline PyBullet landing demo — reproducible paper-style video (no ROS).
+
+seed: 42
+output_video_drone: demo_landing_drone.mp4
+output_video_chase: demo_landing_chase.mp4
+fps: 30
+max_duration_s: 120
+use_gui: false
+
+# Post-process with ffmpeg for H.264 + yuv420p (fixes glitchy playback vs raw OpenCV mp4v).
+video:
+  reencode_h264: true
+  ffmpeg_crf: 23
+  ffmpeg_preset: medium
+
+# Camera + fusion intrinsics (must match FusionNode defaults unless you change code)
+camera:
+  width: 640
+  height: 480
+  # Narrower FOV reduces “fisheye” look; match fx/fy ≈ (H/2)/tan(vfov/2) for a nadir pinhole model.
+  fov_deg: 72.0
+  fx: 330.0
+  fy: 330.0
+  cx: 320.0
+  cy: 240.0
+  # Nadir altitude ~12 m; default SLAM max_depth_m=5 rejects all PyBullet depth samples.
+  max_depth_m: 20.0
+
+chase_camera:
+  distance_m: 10.5
+  height_above_drone_m: 2.25
+  # Look at ~this fraction of drone height (frames the quad in flight, not only the ground).
+  target_height_frac: 0.88
+  fov_deg: 54.0
+
+scene:
+  # Inner “mission” area: obstacles and drone XY clamp stay inside this half-width.
+  terrain_half_extent_m: 20.0
+  # Vast ground plane so chase cam does not show a square slab edge near the horizon.
+  visual_ground_half_extent_m: 360.0
+  safe_clearing_radius_m: 12.0
+  n_trees: 12
+  n_rocks: 18
+  water_patch: true
+  water_half_size_m: 4.5
+  add_roads: true
+  road_half_width_m: 1.7
+  prefer_opengl_render: true
+  grass_texture_size: 2048
+  # Tiled ground can z-fight/shimmer; one slab + high-res texture is smoother in motion.
+  ground_use_tiled_visuals: false
+  ground_tiles_per_axis: 16
+  tree_trunk_height_m: 1.35
+  tree_trunk_radius_m: 0.16
+  n_buildings: 3
+  n_parked_cars: 6
+
+trajectory:
+  max_points: 900
+
+fusion:
+  world_size_m: 100.0
+  zone_safety_threshold: 0.42
+  zone_min_size_m: 2.5
+
+survey:
+  half_extent_m: 16.0
+  altitude_m: 12.0
+  speed_m_s: 1.4
+  stripe_spacing_m: 3.0
+  trajectory_type: lawnmower  # lawnmower | spiral
+
+# Fusion + controller use this pose (not render pose). Modes:
+#   rgbd_slam — integrated keyframe ORB RGB-D SLAM from nadir render + depth
+#   visual_odometry — integrates commanded world velocities with noise
+#   ground_truth — ideal pose (upper bound)
+#   noisy_truth — Gaussian noise on true pose (PoseProvider)
+slam:
+  mode: rgbd_slam
+  backend: yoloslam_rkf_rgbd
+  controller_uses_slam_estimate: true
+  vo_vel_noise_std_m_s: 0.035
+  vo_yaw_noise_std_rad: 0.012
+  vo_seed: 42
+
+pose:
+  use_noisy_vo: false
+  pos_sigma_m: 0.08
+  yaw_sigma_rad: 0.03
+  z_sigma_m: 0.05
+
+detector:
+  # scene_semantic | yolo | color | hybrid
+  # scene_semantic is most stable for synthetic visuals and avoids flicker.
+  mode: scene_semantic
+  # Project detections with true pose so the safety grid matches the PyBullet world (VO stays for control).
+  use_truth_pose_for_geometry: true
+  model_path: yolov8n.pt
+  safety_mapping_yaml: config/safety_mapping.yaml
+
+dynamics:
+  max_accel_xy_m_s2: 1.2
+  max_accel_z_m_s2: 0.9
+  max_yaw_accel_rad_s2: 1.6
+
+controller:
+  survey_duration_s: 7.5
+  zone_score_evaluate_commit: 1.2
+  zone_score_search_commit: 0.8
+  approach_xy_tolerance_m: 1.2
+  align_xy_tolerance_m: 0.25
+  align_stable_s: 1.0
+  descend_xy_drift_m: 0.75
+  touchdown_altitude_m: 0.28
+  target_lost_timeout_s: 8.0
+  abort_resurvey_s: 2.0
+
+# Turn on for a second clip / paper segment showing ABORT + climb.
+abort_demo:
+  enabled: false
+  inject_after_descend_s: 1.1
+  end_video_after_abort_s: 6.0
+
+artifacts:
+  save_grid_evolution_png: true
+  grid_plot_path: results/pybullet_demo/grid_evolution.png

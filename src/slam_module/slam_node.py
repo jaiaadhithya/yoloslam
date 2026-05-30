@@ -4,7 +4,7 @@ from typing import Dict
 
 import numpy as np
 
-from slam_module.slam_wrapper import OrbSlamWrapper
+from slam_module.slam_wrapper import SlamWrapper
 
 
 @dataclass
@@ -22,7 +22,7 @@ class PoseStampedLike:
 
 class SlamNode:
     def __init__(self) -> None:
-        self.wrapper = OrbSlamWrapper()
+        self.wrapper = SlamWrapper()
 
     def process_frame(self, frame: np.ndarray) -> Dict:
         pose = self.wrapper.track(frame, time.time())

@@ -1,0 +1,57 @@
+# Active SLAM backend for runtime (set by slam comparison benchmark).
+# Options: yoloslam_rkf_rgbd | keyframe_pose_graph_rgbd | opencv_orb_rgbd | ...
+
+backend: yoloslam_rkf_rgbd
+
+yoloslam_rkf_rgbd:
+  fx: 525.0
+  fy: 525.0
+  cx: 319.5
+  cy: 239.5
+  max_features: 2200
+  keyframe_trans_m: 0.06
+  keyframe_rot_deg: 6.0
+  max_map_points: 6000
+  recovery_match_threshold: 7
+
+keyframe_pose_graph_rgbd:
+  fx: 525.0
+  fy: 525.0
+  cx: 319.5
+  cy: 239.5
+  keyframe_trans_m: 0.08
+  keyframe_rot_deg: 8.0
+
+opencv_orb_rgbd:
+  fx: 525.0
+  fy: 525.0
+  cx: 319.5
+  cy: 239.5
+  max_features: 1800
+
+droid_slam:
+  fx: 525.0
+  fy: 525.0
+  cx: 319.5
+  cy: 239.5
+  buffer: 512
+  upsample: false
+
+orb_slam3:
+  mode: rgbd
+  use_wsl: true
+
+rtabmap:
+  fx: 525.0
+  fy: 525.0
+  cx: 319.5
+  cy: 239.5
+
+open3d_rgbd:
+  fx: 525.0
+  fy: 525.0
+  cx: 319.5
+  cy: 239.5
+  depth_trunc_m: 4.0
+
+rtabmap_cli: {}

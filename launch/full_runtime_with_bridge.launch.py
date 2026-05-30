@@ -19,6 +19,19 @@ def generate_launch_description() -> LaunchDescription:
                 output="screen",
             ),
             ExecuteProcess(
+                cmd=[
+                    "ros2",
+                    "run",
+                    "ros_gz_bridge",
+                    "parameter_bridge",
+                    "/depth_camera@sensor_msgs/msg/Image[gz.msgs.Image",
+                    "--ros-args",
+                    "-r",
+                    "/depth_camera:=/camera/depth",
+                ],
+                output="screen",
+            ),
+            ExecuteProcess(
                 cmd=["python3", "-m", "yolo_detector.yolo_ros_node"],
                 output="screen",
                 additional_env={"MPLBACKEND": "Agg"},

@@ -50,11 +50,17 @@ def select_zone_from_grid(
             if len(cells) < min_cells:
                 continue
 
-            unsafe_hits = sum(
-                1
-                for cx, cy in cells
-                if unsafe_map[max(0, cy - 1) : cy + 2, max(0, cx - 1) : cx + 2].sum() > 0.0
-            )
+            # Allow zones that graze diagonal-only unsafe; still forbid cardinal neighbors of unsafe cells.
+            h_um, w_um = unsafe_map.shape
+
+            def _cardinal_touch_unsafe(ix: int, iy: int) -> bool:
+                for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                    nx, ny = ix + dx, iy + dy
+                    if 0 <= nx < w_um and 0 <= ny < h_um and unsafe_map[ny, nx] > 0.01:
+                        return True
+                return False
+
+            unsafe_hits = sum(1 for cx, cy in cells if _cardinal_touch_unsafe(cx, cy))
             if unsafe_hits > 0:
                 continue
 

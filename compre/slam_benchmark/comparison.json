@@ -1,0 +1,115 @@
+{
+  "dataset": "/mnt/c/Users/jaiaa/OneDrive/Desktop/stuff/study_project/yoloslam/datasets/tum_rgbd/rgbd_dataset_freiburg1_xyz",
+  "ground_truth": "/mnt/c/Users/jaiaa/OneDrive/Desktop/stuff/study_project/yoloslam/datasets/tum_rgbd/rgbd_dataset_freiburg1_xyz/groundtruth.txt",
+  "max_frames": 792,
+  "frame_stride": 1,
+  "results": [
+    {
+      "backend_key": "yoloslam_rkf_rgbd",
+      "backend": {
+        "name": "yoloslam_rkf_rgbd",
+        "github": "yoloslam (this repository)",
+        "description": "Proposed YOLOSLAM-RKF: denser keyframe RGB-D map + map-anchored recovery when frame-to-frame ORB matches are sparse.",
+        "sensor_modes": [
+          "rgbd"
+        ]
+      },
+      "status": "ok",
+      "runtime_s": 84.88787275199866,
+      "num_poses": 792,
+      "estimated_trajectory": "/mnt/c/Users/jaiaa/OneDrive/Desktop/stuff/study_project/yoloslam/compre/slam_benchmark/yoloslam_rkf_rgbd/estimated.tum",
+      "metrics": {
+        "ate_rmse_m": 0.05727701087401405,
+        "ate_mean_m": 0.055232738159140086,
+        "ate_median_m": 0.05243868117882637,
+        "ate_std_m": 0.015165771002682116,
+        "rpe_rmse_m": 0.04085656897495042,
+        "rpe_mean_m": 0.036479690747624034,
+        "num_synced_poses": 790,
+        "plot": "/mnt/c/Users/jaiaa/OneDrive/Desktop/stuff/study_project/yoloslam/compre/slam_benchmark/yoloslam_rkf_rgbd/trajectory_eval.png"
+      }
+    },
+    {
+      "backend_key": "keyframe_pose_graph_rgbd",
+      "backend": {
+        "name": "keyframe_pose_graph_rgbd",
+        "github": "https://github.com/opencv/opencv",
+        "description": "Keyframe RGB-D SLAM with ORB map points and pose-graph chaining.",
+        "sensor_modes": [
+          "rgbd"
+        ]
+      },
+      "status": "ok",
+      "runtime_s": 69.15162858000258,
+      "num_poses": 792,
+      "estimated_trajectory": "/mnt/c/Users/jaiaa/OneDrive/Desktop/stuff/study_project/yoloslam/compre/slam_benchmark/keyframe_pose_graph_rgbd/estimated.tum",
+      "metrics": {
+        "ate_rmse_m": 0.06189606297320196,
+        "ate_mean_m": 0.05963818791116016,
+        "ate_median_m": 0.057177565209344756,
+        "ate_std_m": 0.016565299703166603,
+        "rpe_rmse_m": 0.06298856356281608,
+        "rpe_mean_m": 0.05465869000877118,
+        "num_synced_poses": 790,
+        "plot": "/mnt/c/Users/jaiaa/OneDrive/Desktop/stuff/study_project/yoloslam/compre/slam_benchmark/keyframe_pose_graph_rgbd/trajectory_eval.png"
+      }
+    },
+    {
+      "backend_key": "opencv_orb_rgbd",
+      "backend": {
+        "name": "opencv_orb_rgbd",
+        "github": "https://github.com/opencv/opencv",
+        "description": "ORB feature tracking with RGB-D PnP and local keyframe map.",
+        "sensor_modes": [
+          "rgbd"
+        ]
+      },
+      "status": "ok",
+      "runtime_s": 49.6647225179986,
+      "num_poses": 792,
+      "estimated_trajectory": "/mnt/c/Users/jaiaa/OneDrive/Desktop/stuff/study_project/yoloslam/compre/slam_benchmark/opencv_orb_rgbd/estimated.tum",
+      "metrics": {
+        "ate_rmse_m": 0.06146098206203924,
+        "ate_mean_m": 0.05890832310012048,
+        "ate_median_m": 0.05943995598619512,
+        "ate_std_m": 0.017528884321659513,
+        "rpe_rmse_m": 0.04677609644889875,
+        "rpe_mean_m": 0.04183316360841565,
+        "num_synced_poses": 790,
+        "plot": "/mnt/c/Users/jaiaa/OneDrive/Desktop/stuff/study_project/yoloslam/compre/slam_benchmark/opencv_orb_rgbd/trajectory_eval.png"
+      }
+    },
+    {
+      "backend_key": "open3d_rgbd",
+      "backend": {
+        "name": "open3d_rgbd",
+        "github": "https://github.com/isl-org/Open3D",
+        "description": "Open3D multi-scale RGB-D visual odometry with robust kernels.",
+        "sensor_modes": [
+          "rgbd"
+        ]
+      },
+      "status": "ok",
+      "runtime_s": 609.1771577260006,
+      "num_poses": 792,
+      "estimated_trajectory": "/mnt/c/Users/jaiaa/OneDrive/Desktop/stuff/study_project/yoloslam/compre/slam_benchmark/open3d_rgbd/estimated.tum",
+      "metrics": {
+        "ate_rmse_m": 0.15101432151133234,
+        "ate_mean_m": 0.12627157354562213,
+        "ate_median_m": 0.10842394236300902,
+        "ate_std_m": 0.08283003691802024,
+        "rpe_rmse_m": 0.36485395079278676,
+        "rpe_mean_m": 0.3628911463202196,
+        "num_synced_poses": 790,
+        "plot": "/mnt/c/Users/jaiaa/OneDrive/Desktop/stuff/study_project/yoloslam/compre/slam_benchmark/open3d_rgbd/trajectory_eval.png"
+      }
+    }
+  ],
+  "best": {
+    "selected_backend": "yoloslam_rkf_rgbd",
+    "selected_github": "yoloslam (this repository)",
+    "ate_rmse_m": 0.05727701087401405,
+    "rpe_rmse_m": 0.04085656897495042,
+    "reason": "Lowest ATE RMSE on TUM freiburg1_xyz after timestamp association."
+  }
+}

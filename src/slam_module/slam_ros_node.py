@@ -1,48 +1,47 @@
 import json
 import time
 
-import numpy as np
 import rclpy
 from geometry_msgs.msg import PoseStamped
 from rclpy.node import Node
 from sensor_msgs.msg import Image
 from std_msgs.msg import String
 
-from slam_module.slam_wrapper import OrbSlamWrapper
-
-
-def _image_msg_to_rgb(msg: Image) -> np.ndarray:
-    if msg.height == 0 or msg.width == 0:
-        return np.zeros((480, 640, 3), dtype=np.uint8)
-    arr = np.frombuffer(msg.data, dtype=np.uint8)
-    step = int(msg.step) if msg.step else 0
-    if step > 0 and len(arr) >= step * msg.height:
-        row = arr[: step * msg.height].reshape((msg.height, step))
-        channels = max(1, step // msg.width)
-        img = row[:, : msg.width * channels].reshape((msg.height, msg.width, channels))
-    else:
-        channels = max(1, int(len(arr) / (msg.height * msg.width)))
-        img = arr.reshape((msg.height, msg.width, channels))
-
-    enc = (msg.encoding or "").lower()
-    if channels == 1:
-        return np.repeat(img, 3, axis=2)
-    if "bgr" in enc:
-        return img[:, :, :3][:, :, ::-1].copy()
-    return img[:, :, :3].copy()
+from slam_module.ros_image_utils import image_msg_to_bgr, image_msg_to_depth_m
+from slam_module.slam_wrapper import SlamWrapper
 
 
 class SlamRosNode(Node):
     def __init__(self) -> None:
         super().__init__("slam_ros_node")
-        self.wrapper = OrbSlamWrapper()
-        self.image_sub = self.create_subscription(Image, "/camera", self.on_image, 10)
+        self.declare_parameter("depth_topic", "/camera/depth")
+        self.declare_parameter("rgb_topic", "/camera")
+        depth_topic = str(self.get_parameter("depth_topic").value)
+        rgb_topic = str(self.get_parameter("rgb_topic").value)
+
+        self.wrapper = SlamWrapper()
+        self._latest_depth_m = None
+        self._depth_received = False
+
+        self.image_sub = self.create_subscription(Image, rgb_topic, self.on_image, 10)
+        self.depth_sub = self.create_subscription(Image, depth_topic, self.on_depth, 10)
         self.pose_pub = self.create_publisher(PoseStamped, "/slam/pose", 10)
         self.pose_json_pub = self.create_publisher(String, "/slam/pose_json", 10)
+        self.get_logger().info(
+            f"SLAM backend={self.wrapper.backend_name} rgb={rgb_topic} depth={depth_topic}",
+            throttle_duration_sec=0.0,
+        )
+
+    def on_depth(self, msg: Image) -> None:
+        depth = image_msg_to_depth_m(msg)
+        if depth is not None:
+            self._latest_depth_m = depth
+            self._depth_received = True
 
     def on_image(self, msg: Image) -> None:
-        frame = _image_msg_to_rgb(msg)
-        pose = self.wrapper.track(frame, time.time())
+        frame = image_msg_to_bgr(msg)
+        depth = self._latest_depth_m if self._depth_received else None
+        pose = self.wrapper.track(frame, time.time(), depth_m=depth)
 
         ros_pose = PoseStamped()
         ros_pose.header.stamp = self.get_clock().now().to_msg()
@@ -67,12 +66,14 @@ class SlamRosNode(Node):
                 "qz": ros_pose.pose.orientation.z,
                 "qw": ros_pose.pose.orientation.w,
                 "state": pose.tracking_state,
+                "has_depth": bool(depth is not None),
                 "timestamp": time.time(),
             }
         )
         self.pose_json_pub.publish(payload)
         self.get_logger().info(
-            f"SLAM state={pose.tracking_state} x={pose.position[0]:.2f} y={pose.position[1]:.2f}",
+            f"SLAM state={pose.tracking_state} depth={depth is not None} "
+            f"x={pose.position[0]:.2f} y={pose.position[1]:.2f}",
             throttle_duration_sec=5.0,
         )
 

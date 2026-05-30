@@ -14,6 +14,7 @@ setup(
         "fusion",
         "landing_controller",
         "evaluation",
+        "pybullet_sim",
     ],
     package_dir={
         "": "src",

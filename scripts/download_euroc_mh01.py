@@ -6,26 +6,41 @@ from urllib.error import URLError
 from urllib.request import urlretrieve
 
 
-MH01_URL = (
-    "http://robotics.ethz.ch/~asl-datasets/ijrr_euroc_mav_dataset/"
-    "machine_hall/MH_01_easy/MH_01_easy.zip"
-)
+MH01_URLS = [
+    "http://robotics.ethz.ch/~asl-datasets/ijrr_euroc_mav_dataset/machine_hall/MH_01_easy/MH_01_easy.zip",
+    "https://robotics.ethz.ch/~asl-datasets/ijrr_euroc_mav_dataset/machine_hall/MH_01_easy/MH_01_easy.zip",
+]
 
 
-def _download(url: str, out_path: Path) -> None:
+def _download(urls: list[str], out_path: Path) -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    if out_path.exists():
-        print(f"Archive already exists: {out_path}")
+    if out_path.exists() and out_path.stat().st_size > 1024 * 1024:
+        print(f"Archive already exists: {out_path} ({out_path.stat().st_size // (1024*1024)} MB)")
         return
-    print(f"Downloading {url} -> {out_path}")
-    try:
-        urlretrieve(url, out_path)  # nosec - trusted dataset host for this workflow
-    except URLError as exc:
-        raise RuntimeError(
-            "EuRoC download failed (likely network/user-agent/proxy issue). "
-            "Download MH_01_easy.zip manually via browser and place it at "
-            f"{out_path} before rerunning this script."
-        ) from exc
+    if out_path.exists() and out_path.stat().st_size <= 1024:
+        out_path.unlink(missing_ok=True)
+
+    import urllib.request
+
+    last_exc: Exception | None = None
+    for url in urls:
+        print(f"Downloading {url} -> {out_path}")
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "yoloslam/1.0"})
+            with urllib.request.urlopen(req, timeout=120) as resp:  # nosec - trusted dataset host
+                data = resp.read()
+            if len(data) < 1024 * 1024:
+                raise RuntimeError(f"Download too small ({len(data)} bytes)")
+            out_path.write_bytes(data)
+            print(f"Saved {out_path} ({len(data) // (1024*1024)} MB)")
+            return
+        except (URLError, RuntimeError, TimeoutError) as exc:
+            last_exc = exc
+            print(f"  failed: {exc}")
+    raise RuntimeError(
+        "EuRoC download failed from all mirrors. Download MH_01_easy.zip manually and place at "
+        f"{out_path} before rerunning."
+    ) from last_exc
 
 
 def _extract(archive: Path, out_dir: Path) -> Path:
@@ -66,7 +81,7 @@ def main() -> None:
 
     dataset_dir = Path(args.dataset_dir)
     archive = dataset_dir / "MH_01_easy.zip"
-    _download(MH01_URL, archive)
+    _download(MH01_URLS, archive)
     seq_dir = _extract(archive, dataset_dir)
 
     gt_csv = _ground_truth_csv(seq_dir)

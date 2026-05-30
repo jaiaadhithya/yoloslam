@@ -17,6 +17,7 @@ unsafe:
     - train
     - truck
     - boat
+    - building
     - bird
     - cat
     - dog

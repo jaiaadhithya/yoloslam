@@ -1,0 +1,25 @@
+{
+  "backend_key": "yoloslam_rkf_rgbd",
+  "backend": {
+    "name": "yoloslam_rkf_rgbd",
+    "github": "yoloslam (this repository)",
+    "description": "Proposed YOLOSLAM-RKF: denser keyframe RGB-D map + map-anchored recovery when frame-to-frame ORB matches are sparse.",
+    "sensor_modes": [
+      "rgbd"
+    ]
+  },
+  "status": "ok",
+  "runtime_s": 84.88787275199866,
+  "num_poses": 792,
+  "estimated_trajectory": "/mnt/c/Users/jaiaa/OneDrive/Desktop/stuff/study_project/yoloslam/compre/slam_benchmark/yoloslam_rkf_rgbd/estimated.tum",
+  "metrics": {
+    "ate_rmse_m": 0.05727701087401405,
+    "ate_mean_m": 0.055232738159140086,
+    "ate_median_m": 0.05243868117882637,
+    "ate_std_m": 0.015165771002682116,
+    "rpe_rmse_m": 0.04085656897495042,
+    "rpe_mean_m": 0.036479690747624034,
+    "num_synced_poses": 790,
+    "plot": "/mnt/c/Users/jaiaa/OneDrive/Desktop/stuff/study_project/yoloslam/compre/slam_benchmark/yoloslam_rkf_rgbd/trajectory_eval.png"
+  }
+}
